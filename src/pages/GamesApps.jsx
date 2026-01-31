@@ -27,7 +27,7 @@ const GamesApps = ({ products }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                <div className="aspect-[3/4] overflow-hidden relative">
+                <div className="aspect-[9/16] overflow-hidden relative">
                     {/* Image Slider */}
                     <img
                         src={product.screenshots ? product.screenshots[currentImageIndex] : product.image}
@@ -125,7 +125,7 @@ const GamesApps = ({ products }) => {
                     <h2 className="text-2xl font-bold whitespace-nowrap">Games</h2>
                     <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-gray-700"></div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
                     {games.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
@@ -139,11 +139,9 @@ const GamesApps = ({ products }) => {
                     <h2 className="text-2xl font-bold whitespace-nowrap">Apps</h2>
                     <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-gray-700"></div>
                 </div>
-                <div className="flex flex-wrap justify-center gap-8">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
                     {apps.map((product) => (
-                        <div key={product.id} className="w-full max-w-sm">
-                            <ProductCard product={product} hoverClass="hover:animate-wave-glow-green" />
-                        </div>
+                        <ProductCard key={product.id} product={product} hoverClass="hover:animate-wave-glow-green" />
                     ))}
                 </div>
             </div>
