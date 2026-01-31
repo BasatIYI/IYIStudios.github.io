@@ -24,7 +24,9 @@ const products = [
         screenshots: [
             '/media/games/galaxy-go/screenshot-1.png',
             '/media/games/galaxy-go/screenshot-2.png',
-            '/media/games/galaxy-go/screenshot-3.png'
+            '/media/games/galaxy-go/screenshot-3.png',
+            '/media/games/galaxy-go/screenshot-4.png',
+            '/media/games/galaxy-go/screenshot-5.png'
         ],
         icon: '/media/games/galaxy-go/icon.png',
         playLink: 'https://galaxygo.iyistudios.com',
@@ -38,7 +40,9 @@ const products = [
         screenshots: [
             '/media/games/color-sticks/screenshot-1.png',
             '/media/games/color-sticks/screenshot-2.png',
-            '/media/games/color-sticks/screenshot-3.png'
+            '/media/games/color-sticks/screenshot-3.png',
+            '/media/games/color-sticks/screenshot-4.png',
+            '/media/games/color-sticks/screenshot-5.png'
         ],
         icon: '/media/games/color-sticks/icon.png',
         playLink: 'https://colorsticks.iyistudios.com',
@@ -52,7 +56,9 @@ const products = [
         screenshots: [
             '/media/games/rolldrop/screenshot-1.png',
             '/media/games/rolldrop/screenshot-2.png',
-            '/media/games/rolldrop/screenshot-3.png'
+            '/media/games/rolldrop/screenshot-3.png',
+            '/media/games/rolldrop/screenshot-4.png',
+            '/media/games/rolldrop/screenshot-5.png'
         ],
         icon: '/media/games/rolldrop/icon.png',
         playLink: 'https://rolldrop.iyistudios.com',
@@ -66,7 +72,9 @@ const products = [
         screenshots: [
             '/media/games/tetrigun/screenshot-1.png',
             '/media/games/tetrigun/screenshot-2.png',
-            '/media/games/tetrigun/screenshot-3.png'
+            '/media/games/tetrigun/screenshot-3.png',
+            '/media/games/tetrigun/screenshot-4.png',
+            '/media/games/tetrigun/screenshot-5.png'
         ],
         icon: '/media/games/tetrigun/icon.png',
         playLink: 'https://tetrigun.iyistudios.com',
@@ -80,7 +88,9 @@ const products = [
         screenshots: [
             '/media/apps/wimc/screenshot-1.png',
             '/media/apps/wimc/screenshot-2.png',
-            '/media/apps/wimc/screenshot-3.png'
+            '/media/apps/wimc/screenshot-3.png',
+            '/media/apps/wimc/screenshot-4.png',
+            '/media/apps/wimc/screenshot-5.png'
         ],
         icon: '/media/apps/wimc/icon.png',
         playLink: 'http://wimc.iyistudios.com',
@@ -94,7 +104,9 @@ const products = [
         screenshots: [
             '/media/apps/wimb/screenshot-1.png',
             '/media/apps/wimb/screenshot-2.png',
-            '/media/apps/wimb/screenshot-3.png'
+            '/media/apps/wimb/screenshot-3.png',
+            '/media/apps/wimb/screenshot-4.png',
+            '/media/apps/wimb/screenshot-5.png'
         ],
         icon: '/media/apps/wimb/icon.png',
         playLink: 'http://wimb.iyistudios.com',
