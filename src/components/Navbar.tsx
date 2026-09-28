@@ -18,6 +18,12 @@ export default function Navbar() {
         </Link>
         <div className="space-x-4 hidden md:flex items-center">
           <Link
+            to="/gokboru"
+            className="px-4 py-2 text-sm font-bold tracking-wide text-gray-300 hover:text-white transition-colors"
+          >
+            GÖKBÖRÜ
+          </Link>
+          <Link
             to="/games-apps"
             className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-full hover:from-blue-600 hover:to-purple-600 text-gray-300 hover:text-white transition-all duration-300 shadow-lg hover:shadow-blue-500/20 group/nav"
           >

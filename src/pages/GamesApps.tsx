@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import type { Product } from "../data/products";
 import { AppleIcon, GooglePlayIcon } from "../components/icons";
+import WishlistButton from "../components/WishlistButton";
+import { GOKBORU_MEDIA } from "../config/gokboru";
+import { gokboruCopy } from "../data/gokboru";
+import { PAGE_META, usePageMeta } from "../seo";
 
 function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { product: Product; hoverClass?: string }) {
   const [index, setIndex] = useState(0);
@@ -111,7 +116,49 @@ function SectionTitle({ label, accent, bar }: { label: string; accent: string; b
   );
 }
 
+function GokboruFeature() {
+  return (
+    <article className="group mx-auto flex max-w-7xl flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-xl transition duration-300 hover:animate-wave-glow-purple md:flex-row">
+      <Link to="/gokboru" className="block md:w-3/5" tabIndex={-1} aria-hidden="true">
+        <img
+          src={GOKBORU_MEDIA.capsule}
+          alt=""
+          width={1232}
+          height={706}
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+      </Link>
+      <div className="flex flex-col justify-center gap-4 p-6 text-left md:w-2/5 md:p-10">
+        <div className="flex gap-2">
+          <span className="rounded-full bg-purple-600/80 px-2 py-0.5 text-[10px] font-black tracking-widest text-purple-100 uppercase">
+            PC
+          </span>
+          <span className="rounded-full bg-blue-600/80 px-2 py-0.5 text-[10px] font-black tracking-widest text-blue-100 uppercase">
+            Wishlist now
+          </span>
+        </div>
+        <h2 className="text-3xl font-black tracking-tighter text-white uppercase md:text-4xl">
+          <Link to="/gokboru" className="hover:text-blue-400 transition-colors">
+            {gokboruCopy.name}
+          </Link>
+        </h2>
+        <p className="text-gray-300">{gokboruCopy.tagline}</p>
+        <div className="flex flex-wrap items-center gap-4">
+          <WishlistButton campaign="games_page" />
+          <Link
+            to="/gokboru"
+            className="text-sm font-bold tracking-wide text-gray-200 underline decoration-gray-500 underline-offset-4 hover:text-white hover:decoration-white"
+          >
+            Learn more
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function GamesApps({ products }: { products: Product[] }) {
+  usePageMeta(PAGE_META.games);
   const games = products.filter((p) => p.type === "Game");
   const apps = products.filter((p) => p.type === "App");
 
@@ -123,6 +170,15 @@ export default function GamesApps({ products }: { products: Product[] }) {
           Games &amp; Apps
         </span>
       </h1>
+
+      <div className="mb-20">
+        <SectionTitle
+          label="PC"
+          accent="to-purple-500"
+          bar="from-purple-600 to-blue-600 shadow-[0_0_15px_rgba(147,51,234,0.5)]"
+        />
+        <GokboruFeature />
+      </div>
 
       <div className="mb-20">
         <SectionTitle

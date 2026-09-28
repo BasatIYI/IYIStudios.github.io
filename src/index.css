@@ -7,3 +7,8 @@
     @apply bg-iyiblack font-sans text-white antialiased;
   }
 }
+
+/* Set by the inline script in index.html for visitors who dismissed the bar. */
+html[data-announcement-dismissed] .announcement-bar {
+  display: none;
+}
