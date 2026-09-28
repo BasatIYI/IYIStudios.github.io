@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
-import { AppleIcon, EpicGamesIcon, GooglePlayIcon, PhoneIcon, SteamIcon } from "../components/icons";
+import { AppleIcon, EpicGamesIcon, GamepadIcon, GooglePlayIcon, SteamIcon } from "../components/icons";
 import WishlistButton from "../components/WishlistButton";
 import TrailerFacade from "../components/TrailerFacade";
 import Modal from "../components/Modal";
@@ -8,14 +8,42 @@ import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP } from "../config/gokboru";
 import { gokboruCopy } from "../data/gokboru";
 import { PAGE_META, usePageMeta } from "../seo";
 import { highPriority } from "../utils";
+import { SITE, STORE_ROW } from "../config/site";
+import { GOKBORU as GOKBORU_CONFIG } from "../config/gokboru";
+import { socialLinks } from "../data/social";
 import { responsive } from "../images";
 
 const stores = [
-  { name: "Google Play", Icon: GooglePlayIcon, size: "h-6" },
-  { name: "App Store", Icon: AppleIcon, size: "h-7" },
-  { name: "Steam", Icon: SteamIcon, size: "h-7" },
-  { name: "Epic Games", Icon: EpicGamesIcon, size: "h-7" },
-];
+  { name: "Google Play", Icon: GooglePlayIcon, size: "h-6", href: STORE_ROW.stores.googlePlay },
+  { name: "App Store", Icon: AppleIcon, size: "h-7", href: STORE_ROW.stores.appStore },
+  { name: "Steam", Icon: SteamIcon, size: "h-7", href: STORE_ROW.stores.steam },
+  { name: "Epic Games", Icon: EpicGamesIcon, size: "h-7", href: STORE_ROW.stores.epic },
+].filter((s): s is typeof s & { href: string } => s.href !== null);
+
+function StoreRow() {
+  if (STORE_ROW.mode === "hidden" || stores.length === 0) return null;
+  return (
+    <nav aria-label="Find our games on" className="bg-iyiblack border-y border-gray-800/30 py-4 md:py-8">
+      <ul className="container mx-auto px-2 md:px-4 flex flex-wrap justify-center items-center gap-6 sm:gap-12 md:gap-20">
+        {stores.map(({ name, Icon, size, href }) => (
+          <li key={name}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener"
+              className="flex flex-col items-center gap-3 rounded p-2 text-gray-300 hover:text-white transition-colors group"
+            >
+              <Icon className={`${size} w-auto`} />
+              <span className="text-[11px] font-bold tracking-widest uppercase group-hover:text-blue-300 transition-colors">
+                {name}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(true); // assume reduced until we know, so nothing animates early
@@ -142,27 +170,13 @@ export default function Home() {
             to="/games"
             className="shrink-0 px-8 py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-full hover:from-blue-600 hover:to-purple-600 text-gray-200 hover:text-white font-bold transition-all duration-300 flex items-center gap-3"
           >
-            <PhoneIcon className="w-5 h-5" />
+            <GamepadIcon className="w-5 h-5" />
             GAMES &amp; APPS
           </Link>
         </div>
       </section>
 
-      <div className="bg-iyiblack border-y border-gray-800/30 py-4 md:py-8 overflow-hidden">
-        <div className="container mx-auto px-2 md:px-4 flex flex-wrap justify-center items-center gap-6 sm:gap-12 md:gap-20">
-          {stores.map(({ name, Icon, size }) => (
-            <div
-              key={name}
-              className="flex flex-col items-center gap-3 opacity-20 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0 group"
-            >
-              <Icon className={`${size} w-auto`} />
-              <span className="text-[10px] font-bold tracking-widest text-white uppercase group-hover:text-blue-400 transition-colors">
-                {name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <StoreRow />
 
       <section className="py-20 bg-gray-900 border-t border-gray-800">
         <div className="container mx-auto px-4">
@@ -196,6 +210,78 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="about" aria-labelledby="about-title" className="scroll-mt-24 py-20">
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 id="about-title" className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
+            About IYI Studios
+          </h2>
+          {/* TODO(placeholder): studio introduction */}
+          <div className="space-y-4 text-lg leading-relaxed text-gray-300">
+            <p>
+              IYI Studios is an independent game studio from Türkiye. We make games with soul and atmosphere—from
+              pick-up-and-play mobile titles like Galaxy Go, Color Sticks, Rolldrop and Tetrigun to Gökbörü, our
+              first major PC game.
+            </p>
+            <p>We also build small, privacy-friendly apps such as WIMC and WIMB.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title" className="scroll-mt-24 border-t border-gray-800 bg-gray-900 py-20">
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 id="contact-title" className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
+            Press &amp; Contact
+          </h2>
+          <p className="mb-8 max-w-2xl text-lg text-gray-300">
+            For press, partnerships or creator access, get in touch. Our press kit has logos, key art and screenshots.
+          </p>
+          <div className="flex flex-wrap items-center gap-4">
+            {SITE.contactEmail ? (
+              <a
+                href={`mailto:${SITE.contactEmail}`}
+                className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-bold text-white hover:from-blue-500 hover:to-purple-500"
+              >
+                {SITE.contactEmail}
+              </a>
+            ) : (
+              // TODO(placeholder): set SITE.contactEmail in src/config/site.ts
+              <span className="rounded-full border border-gray-700 px-6 py-3 text-sm font-bold text-gray-400">
+                Contact email — coming soon
+              </span>
+            )}
+            {(SITE.pressKitUrl ?? GOKBORU_CONFIG.pressKitUrl) ? (
+              <a
+                href={(SITE.pressKitUrl ?? GOKBORU_CONFIG.pressKitUrl)!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-blue-500/40 bg-blue-600/20 px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
+              >
+                Press kit
+              </a>
+            ) : (
+              <span className="rounded-full border border-gray-700 px-6 py-3 text-sm font-bold text-gray-400">
+                Press kit — coming soon
+              </span>
+            )}
+          </div>
+          <ul className="mt-8 flex flex-wrap gap-3" aria-label="IYI Studios on social media">
+            {socialLinks.map(({ name, href, Icon }) => (
+              <li key={name}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`IYI Studios on ${name}`}
+                  className="flex rounded-full border border-gray-700 p-3 text-gray-300 transition-colors hover:border-gray-500 hover:text-white"
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>

@@ -52,3 +52,17 @@ Draft English text written for layout. Replace with approved copy.
 
 - [ ] `/google-play-store` redirect → `https://play.google.com/store/apps/dev?id=YOUR_DEV_ID` (`src/App.tsx`)
 - [ ] `/app-store` redirect → `https://apps.apple.com/developer/idYOUR_DEV_ID` (`src/App.tsx`)
+
+## 6. Site-wide — `src/config/site.ts`, `src/data/products.ts`, `public/media/badges/`
+
+- [ ] `SITE.contactEmail` — studio contact address (Press & Contact section on the home page)
+- [ ] `SITE.pressKitUrl` — studio press kit (falls back to `GOKBORU.pressKitUrl`)
+- [ ] Store row decision (`STORE_ROW.mode`): `"links"` shows only stores with a URL, `"hidden"` removes the row. With every URL `null` the row is currently not shown.
+  - [ ] `STORE_ROW.stores.googlePlay` — Google Play developer page
+  - [ ] `STORE_ROW.stores.appStore` — App Store developer page
+  - `steam` follows the Gökbörü Steam config; `epic` stays `null` (no Epic release)
+- [ ] Card taglines for all six products (`tagline` in `src/data/products.ts`, drafted from the store descriptions)
+- [ ] `appStoreUrl` for the four games, `googlePlayUrl` / `appStoreUrl` for WIMC and WIMB (a badge only appears when its URL is set)
+- [ ] `public/media/badges/google-play-badge.svg` — official "Get it on Google Play" badge (same file name)
+- [ ] `public/media/badges/app-store-badge.svg` — official "Download on the App Store" badge (same file name)
+- [ ] About text on the home page (`src/pages/Home.tsx`, `#about`)

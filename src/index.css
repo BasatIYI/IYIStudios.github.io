@@ -6,6 +6,11 @@
   body {
     @apply bg-iyiblack font-sans text-white antialiased;
   }
+
+  /* Visible keyboard focus everywhere; mouse clicks stay clean. */
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-blue-400;
+  }
 }
 
 /* Set by the inline script in index.html for visitors who dismissed the bar. */
