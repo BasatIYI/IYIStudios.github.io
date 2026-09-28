@@ -205,7 +205,7 @@ export default function Home() {
                   to="/gokboru"
                   className="px-6 py-3 text-sm font-bold tracking-wide text-gray-200 hover:text-white underline decoration-gray-500 underline-offset-4 hover:decoration-white"
                 >
-                  Learn more
+                  Learn more<span className="sr-only"> about Gökbörü</span>
                 </Link>
               </div>
             </div>

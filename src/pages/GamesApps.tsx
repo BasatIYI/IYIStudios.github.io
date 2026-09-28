@@ -173,7 +173,7 @@ function GokboruFeature() {
             to="/gokboru"
             className="text-sm font-bold tracking-wide text-gray-200 underline decoration-gray-500 underline-offset-4 hover:text-white hover:decoration-white"
           >
-            Learn more
+            Learn more<span className="sr-only"> about Gökbörü</span>
           </Link>
         </div>
       </div>
