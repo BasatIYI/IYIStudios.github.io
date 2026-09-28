@@ -6,45 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Sticks - Privacy Policy | IYI Studios</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .policy-content {
-            background-color: #1a1a1a;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-            text-align: left;
-        }
-
-        .policy-content h2 {
-            margin-top: 2rem;
-            color: #3b82f6;
-        }
-
-        .policy-content h3 {
-            margin-top: 1.5rem;
-            color: #60a5fa;
-        }
-
-        .policy-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-
-        .policy-content li {
-            margin-bottom: 0.5rem;
-            background: none;
-        }
-
-        .policy-content p {
-            margin-bottom: 1rem;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="/media/branding/favicon.png">
+    <meta name="theme-color" content="#0a0a0a">
 </head>
 
 <body>
+    <nav class="site-bar">
+        <div class="site-bar-inner">
+            <a href="/" class="logo"><img src="/optimized/media/branding/companylogo-80.webp" alt="" width="40" height="40">IYI Studios</a>
+            <a href="/" class="back">Back to site</a>
+        </div>
+    </nav>
     <div class="container">
         <header>
-            <a href="/" class="logo">IYI Studios</a>
             <h1>Color Sticks Mobile App Privacy Policy</h1>
         </header>
 
@@ -172,15 +146,16 @@
                         partners.</li>
                 </ul>
             </div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="index.html" style="color: #3b82f6; text-decoration: none;">&larr; Back to Privacy Policies</a>
+            <div class="back-link">
+                <a href="index.html">&larr; Back to Privacy Policies</a>
             </div>
         </main>
 
-        <footer>
-            <p>&copy; 2024 IYI Studios. All rights reserved.</p>
-        </footer>
     </div>
+    <footer>
+        <p>&copy; <span data-year>2026</span> IYI Studios. All rights reserved.</p>
+    </footer>
+    <script>document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
 </body>
 
 </html>

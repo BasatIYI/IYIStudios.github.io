@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policies | IYI Studios</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/media/branding/favicon.png">
+    <meta name="theme-color" content="#0a0a0a">
 </head>
 
 <body>
+    <nav class="site-bar">
+        <div class="site-bar-inner">
+            <a href="/" class="logo"><img src="/optimized/media/branding/companylogo-80.webp" alt="" width="40" height="40">IYI Studios</a>
+            <a href="/" class="back">Back to site</a>
+        </div>
+    </nav>
     <div class="container">
         <header>
-            <a href="/" class="logo">IYI Studios</a>
             <h1>Privacy Policies</h1>
         </header>
 
@@ -29,10 +36,11 @@
             </section>
         </main>
 
-        <footer>
-            <p>&copy; 2024 IYI Studios. All rights reserved.</p>
-        </footer>
     </div>
+    <footer>
+        <p>&copy; <span data-year>2026</span> IYI Studios. All rights reserved.</p>
+    </footer>
+    <script>document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
 </body>
 
 </html>
