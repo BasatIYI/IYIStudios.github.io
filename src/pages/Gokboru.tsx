@@ -8,6 +8,7 @@ import TrailerFacade from "../components/TrailerFacade";
 import Gallery from "../components/Gallery";
 import SteamWidget from "../components/SteamWidget";
 import { highPriority } from "../utils";
+import { responsive } from "../images";
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
@@ -77,7 +78,7 @@ export default function Gokboru() {
       {/* Header: key art, logo, wishlist */}
       <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
         <img
-          src={GOKBORU_MEDIA.keyArt}
+          {...responsive(GOKBORU_MEDIA.keyArt, "100vw")}
           alt=""
           width={1920}
           height={1080}

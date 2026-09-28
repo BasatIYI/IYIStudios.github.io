@@ -1,0 +1,15 @@
+{
+  "$comment": "Shared by scripts/optimize-images.mjs and src/images.ts. Source images under public/ are never modified.",
+  "outDir": "optimized",
+  "quality": 78,
+  "presets": [
+    { "name": "logo", "match": "^/media/branding/companylogo\\.png$", "widths": [80, 160] },
+    { "name": "icon", "match": "^/media/(games|apps)/[^/]+/icon\\.png$", "widths": [128, 256] },
+    { "name": "phone", "match": "^/media/(games|apps)/[^/]+/screenshot-\\d+\\.png$", "widths": [360, 720] },
+    {
+      "name": "wide",
+      "match": "^/media/games/(pc-project/pc-project\\.png|gokboru/[^/]+\\.webp)$",
+      "widths": [640, 1280, 1920]
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import WishlistButton from "../components/WishlistButton";
 import { GOKBORU_MEDIA } from "../config/gokboru";
 import { gokboruCopy } from "../data/gokboru";
 import { PAGE_META, usePageMeta } from "../seo";
+import { responsive } from "../images";
 
 function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { product: Product; hoverClass?: string }) {
   const [index, setIndex] = useState(0);
@@ -41,7 +42,14 @@ function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { prod
         </div>
         <div className="flex items-center gap-3 md:gap-4 mb-3">
           <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl overflow-hidden border border-white/20 shadow-lg shrink-0">
-            <img src={product.icon} alt="" className="w-full h-full object-cover" />
+            <img
+              {...responsive(product.icon, "(min-width: 768px) 64px, 48px")}
+              width={256}
+              height={256}
+              loading="lazy"
+              alt=""
+              className="w-full h-full object-cover"
+            />
           </div>
           <h2 className="text-base md:text-2xl font-black text-white group-hover:text-blue-400 transition-colors line-clamp-2 uppercase tracking-tighter leading-none">
             {product.name}
@@ -80,7 +88,10 @@ function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { prod
       </div>
       <div className="w-[45%] h-full relative overflow-hidden bg-black">
         <img
-          src={product.screenshots[index] ?? product.image}
+          {...responsive(product.screenshots[index] ?? product.image, "(min-width: 768px) 225px, 45vw")}
+          width={360}
+          height={640}
+          loading="lazy"
           alt={product.name}
           className="w-full h-full object-cover transition duration-700 ease-in-out"
         />
@@ -121,7 +132,7 @@ function GokboruFeature() {
     <article className="group mx-auto flex max-w-7xl flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-xl transition duration-300 hover:animate-wave-glow-purple md:flex-row">
       <Link to="/gokboru" className="block md:w-3/5" tabIndex={-1} aria-hidden="true">
         <img
-          src={GOKBORU_MEDIA.capsule}
+          {...responsive(GOKBORU_MEDIA.capsule, "(min-width: 768px) 60vw, 100vw")}
           alt=""
           width={1232}
           height={706}

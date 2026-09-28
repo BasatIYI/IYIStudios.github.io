@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GOKBORU_MEDIA, youtubeEmbedUrl } from "../config/gokboru";
+import { responsive } from "../images";
 
 /**
  * Lightweight YouTube facade: only the poster is loaded until the visitor
@@ -26,7 +27,7 @@ export default function TrailerFacade({ autoLoad = false }: { autoLoad?: boolean
 
   const poster = (
     <img
-      src={GOKBORU_MEDIA.trailerPoster}
+      {...responsive(GOKBORU_MEDIA.trailerPoster, "(min-width: 1152px) 1152px, 100vw")}
       alt=""
       width={1920}
       height={1080}

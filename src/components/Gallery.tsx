@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "./Modal";
+import { responsive } from "../images";
 
 /** Screenshot grid with a keyboard-navigable lightbox (←/→ to move, Esc to close). */
 export default function Gallery({ images, name }: { images: string[]; name: string }) {
@@ -19,7 +20,7 @@ export default function Gallery({ images, name }: { images: string[]; name: stri
               aria-label={`Open ${name} screenshot ${i + 1} of ${count}`}
             >
               <img
-                src={src}
+                {...responsive(src, "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw")}
                 alt={`${name} screenshot ${i + 1}`}
                 width={1920}
                 height={1080}
@@ -43,7 +44,7 @@ export default function Gallery({ images, name }: { images: string[]; name: stri
         {active !== null && (
           <figure className="flex w-full max-w-6xl flex-col items-center gap-3">
             <img
-              src={images[active]}
+              {...responsive(images[active], "100vw")}
               alt={`${name} screenshot ${active + 1}`}
               className="max-h-[80vh] w-auto max-w-full rounded-lg object-contain"
             />

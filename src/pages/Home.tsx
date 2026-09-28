@@ -8,6 +8,7 @@ import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP } from "../config/gokboru";
 import { gokboruCopy } from "../data/gokboru";
 import { PAGE_META, usePageMeta } from "../seo";
 import { highPriority } from "../utils";
+import { responsive } from "../images";
 
 const stores = [
   { name: "Google Play", Icon: GooglePlayIcon, size: "h-6" },
@@ -80,7 +81,7 @@ export default function Home() {
       >
         <div ref={parallaxRef} className="absolute inset-0 z-0 transition-transform duration-100 ease-out">
           <img
-            src={GOKBORU_MEDIA.keyArt}
+            {...responsive(GOKBORU_MEDIA.keyArt, "100vw")}
             alt=""
             width={1920}
             height={1080}
@@ -138,7 +139,7 @@ export default function Home() {
             <p className="mt-2 text-lg text-gray-300">Creating immersive digital experiences for mobile and PC.</p>
           </div>
           <Link
-            to="/games-apps"
+            to="/games"
             className="shrink-0 px-8 py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-full hover:from-blue-600 hover:to-purple-600 text-gray-200 hover:text-white font-bold transition-all duration-300 flex items-center gap-3"
           >
             <PhoneIcon className="w-5 h-5" />
@@ -169,7 +170,7 @@ export default function Home() {
             <div className="md:w-1/2">
               <Link to="/gokboru" aria-label="Learn more about Gökbörü">
                 <img
-                  src={GOKBORU_MEDIA.capsule}
+                  {...responsive(GOKBORU_MEDIA.capsule, "(min-width: 768px) 448px, 100vw")}
                   alt="Gökbörü key art"
                   width={1232}
                   height={706}
