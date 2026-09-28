@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import GamesApps from "./pages/GamesApps";
+import Gokboru from "./pages/Gokboru";
 import { ExternalRedirect } from "./components/ExternalRedirect";
 import { products } from "./data/products";
 
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="gokboru" element={<Gokboru />} />
           <Route path="games-apps" element={<GamesApps products={products} />} />
           <Route
             path="google-play-store"
