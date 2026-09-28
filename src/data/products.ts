@@ -66,8 +66,8 @@ export const products: Product[] = [
     description:
       "Recite your dhikrs in peace without using your hands. • Standard dhikrmatik functions are available in the application. • Unlike other dhikrmatik applications, the automatic option can be activated. And You Can recite your dhikrs without counting",
     ...media("apps/wimc"),
-    playLink: "http://wimc.iyistudios.com",
-    installLink: "http://wimc.iyistudios.com",
+    playLink: "https://wimc.iyistudios.com",
+    installLink: "https://wimc.iyistudios.com",
   },
   {
     id: "wimb",
@@ -76,7 +76,7 @@ export const products: Product[] = [
     description:
       "Wimb is a personal finance app, you can offline control over your; • Properties • Monthly Income and Expenses • Summarize Your Total to 17 Other Currencies Exchange Rate • With 18 Local Currency and 10 Diffrent Language Support • All is Offline, Your Privacy Protected • Accounts, Bank Accounts, Cash, And Crypto Coins • Credit Cards, Debit Cards, • Credits and Debits",
     ...media("apps/wimb"),
-    playLink: "http://wimb.iyistudios.com",
-    installLink: "http://wimb.iyistudios.com",
+    playLink: "https://wimb.iyistudios.com",
+    installLink: "https://wimb.iyistudios.com",
   },
 ];
