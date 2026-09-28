@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "predev": "npm run images",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "prebuild": "npm run images",
     "preview": "vite preview",
+    "images": "node scripts/optimize-images.mjs",
     "placeholders": "node scripts/generate-placeholders.mjs"
   },
   "dependencies": {

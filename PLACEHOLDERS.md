@@ -47,3 +47,8 @@ Draft English text written for layout. Replace with approved copy.
 
 - [ ] `operatingSystem` (currently `"Windows"`) and `genre` (currently `Adventure`, `Exploration`) — confirm
 - [ ] Trailer `uploadDate` — add once the trailer is published
+
+## 5. Existing placeholders carried over from the old site
+
+- [ ] `/google-play-store` redirect → `https://play.google.com/store/apps/dev?id=YOUR_DEV_ID` (`src/App.tsx`)
+- [ ] `/app-store` redirect → `https://apps.apple.com/developer/idYOUR_DEV_ID` (`src/App.tsx`)
