@@ -8,7 +8,7 @@
     { "name": "phone", "match": "^/media/(games|apps)/[^/]+/screenshot-\\d+\\.png$", "widths": [360, 720] },
     {
       "name": "wide",
-      "match": "^/media/games/(pc-project/pc-project\\.png|gokboru/[^/]+\\.webp)$",
+      "match": "^/media/games/gokboru/[^/]+\\.webp$",
       "widths": [640, 1280, 1920]
     }
   ]
