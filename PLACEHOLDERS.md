@@ -11,8 +11,8 @@ git grep -n "TODO(placeholder)"
 
 Filling these in is enough; no other code change is needed.
 
-- [ ] `steamAppId` — Steam App ID (e.g. `"1234560"`). Enables every wishlist button, the announcement bar link, the Steam widget and `sameAs` in the JSON-LD. The store URL is derived from it.
-- [ ] `steamStoreUrl` — optional; only if the store URL should differ from `https://store.steampowered.com/app/<APPID>/`.
+- [x] `steamAppId` — Steam App ID (e.g. `"1234560"`). Enables every wishlist button, the announcement bar link, the Steam widget and `sameAs` in the JSON-LD. The store URL is derived from it.
+- [x] `steamStoreUrl` — optional; only if the store URL should differ from `https://store.steampowered.com/app/<APPID>/`.
 - [ ] `trailerYoutubeId` — YouTube video **ID**, not the URL. Enables the trailer player on `/gokboru`, the home "Watch Trailer" button and the `trailer` entry in the JSON-LD.
 - [ ] `discordUrl` — Discord invite (Community section).
 - [ ] `pressKitUrl` — press kit zip or folder link (Press section).

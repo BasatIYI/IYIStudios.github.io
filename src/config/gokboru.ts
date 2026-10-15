@@ -3,8 +3,8 @@
 // See PLACEHOLDERS.md for the full checklist.
 
 export const GOKBORU = {
-  steamAppId: null as string | null, // TODO(placeholder): Steam App ID, e.g. "1234560"
-  steamStoreUrl: null as string | null, // TODO(placeholder): https://store.steampowered.com/app/<APPID>/ (derived from steamAppId when left null)
+  steamAppId: "4886790",
+  steamStoreUrl: "https://store.steampowered.com/app/4886790/Gokboru/",
   trailerYoutubeId: null as string | null, // TODO(placeholder): YouTube video ID (not the URL), e.g. "dQw4w9WgXcQ"
   discordUrl: null as string | null, // TODO(placeholder): Discord invite link, if any
   pressKitUrl: null as string | null, // TODO(placeholder): press kit zip or folder link
