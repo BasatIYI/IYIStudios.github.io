@@ -1,10 +1,8 @@
 import { steamStoreUrl } from "./gokboru";
 
 export const SITE = {
-  // TODO(placeholder): studio contact address shown in Press / Contact
-  contactEmail: null as string | null,
-  // TODO(placeholder): studio-wide press kit (falls back to the Gökbörü press kit)
-  pressKitUrl: null as string | null,
+  contactEmail: "iyigamesmete@gmail.com",
+  pressKitUrl: "/presskit/gokboru-presskit.zip",
 };
 
 /**

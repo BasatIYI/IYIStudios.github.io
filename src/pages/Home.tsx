@@ -63,8 +63,17 @@ function WatchTrailerButton() {
     "inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-bold tracking-wide transition-all duration-300";
 
   if (!GOKBORU.trailerYoutubeId) {
-    // TODO(placeholder): becomes active once GOKBORU.trailerYoutubeId is set.
-    return <span className={`${base} border border-gray-600 text-gray-300 cursor-not-allowed`}>Trailer coming soon</span>;
+    return (
+      <Link
+        to="/gokboru"
+        className={`${base} border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/20`}
+      >
+        Explore Gökbörü
+        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </Link>
+    );
   }
 
   return (

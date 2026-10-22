@@ -48,8 +48,8 @@ function jsonLd() {
     url: absoluteUrl(PAGE_META.gokboru.path),
     image: absoluteUrl(GOKBORU_MEDIA.keyArt),
     gamePlatform: "PC",
-    operatingSystem: "Windows", // TODO(placeholder): confirm supported platforms
-    genre: ["Adventure", "Exploration"], // TODO(placeholder): confirm genres
+    operatingSystem: "Windows",
+    genre: ["Action", "Adventure", "Strategy", "Indie"],
     applicationCategory: "Game",
     author: { "@type": "Organization", name: "IYI Studios", url: SITE_URL },
     publisher: { "@type": "Organization", name: "IYI Studios", url: SITE_URL },
@@ -142,7 +142,7 @@ export default function Gokboru() {
       <Section id="requirements" title="System requirements">
         <div className="overflow-x-auto rounded-xl border border-gray-800">
           <table className="w-full min-w-[480px] text-left text-sm">
-            <caption className="sr-only">Gökbörü system requirements (to be announced)</caption>
+            <caption className="sr-only">Gökbörü system requirements</caption>
             <thead className="bg-gray-900 text-gray-200">
               <tr>
                 <th scope="col" className="p-4 font-bold">

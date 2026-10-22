@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="135" height="40" viewBox="0 0 135 40" role="img" aria-label="Google Play badge placeholder">
-  <!-- TODO(placeholder): replace with the official Google Play badge (same file name) -->
-  <rect x="0.5" y="0.5" width="134" height="39" rx="6" fill="#000" stroke="#a6a6a6"/>
-  <text x="67.5" y="16" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="8" fill="#d1d5db" text-anchor="middle">PLACEHOLDER BADGE</text>
-  <text x="67.5" y="30" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">Google Play</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="135" height="40" viewBox="0 0 135 40" role="img" aria-label="Get it on Google Play">
+  <rect width="135" height="40" rx="5" fill="#000"/>
+  <rect x="0.5" y="0.5" width="134" height="39" rx="4.5" fill="none" stroke="#a6a6a6"/>
+  <!-- Google Play 4-color prism icon -->
+  <path d="M10.4 7.5c-.3.3-.4.8-.4 1.4v22.2c0 .6.2 1.1.5 1.4l.1.1L23 20.1v-.2L10.4 7.5z" fill="#4285F4"/>
+  <path d="M27.1 24.3l-4.1-4.1v-.3l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.7z" fill="#FBBC04"/>
+  <path d="M27.2 24.2L23 20 10.4 32.6c.5.5 1.2.5 2.1.1l14.7-8.5z" fill="#EA4335"/>
+  <path d="M27.2 15.8L12.5 7.4c-.9-.5-1.6-.4-2.1.1L23 20l4.2-4.2z" fill="#34A853"/>
+  <!-- Text -->
+  <text x="41" y="13" fill="#fff" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="6.5" font-weight="600" letter-spacing="0.8">GET IT ON</text>
+  <text x="41" y="27" fill="#fff" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Google Play</text>
 </svg>

@@ -30,7 +30,7 @@ Drop the real file in **with the same name**; no code change is needed.
 - [x] `capsule-main.webp` — 1232×706, WebP. Home Gökbörü card, Games page PC card.
 - [x] `trailer-poster.webp` — 1920×1080, WebP. Trailer cover shown before the player loads.
 - [ ] `hero-loop.mp4` — 1920×1080, short, muted, MP4 (H.264). Optional home hero video. **Not created**: while the file is absent the key art is used. Detected at build time; never played when `prefers-reduced-motion` is on.
-- [x] `screenshot-01.webp` … `screenshot-09.webp` — 1920×1080 each, WebP. `/gokboru` gallery.
+- [x] `screenshot-01.webp` … `screenshot-15.webp` & `artwork-01.webp` … `artwork-03.webp` — 1920×1080 each, WebP. `/gokboru` gallery.
 - [x] `og-image.png` — 1200×630, **PNG** (SVG does not work in share previews). Open Graph / Twitter Card for all pages.
 
 If the logo arrives as PNG instead of SVG, change `GOKBORU_MEDIA.logo` in `src/config/gokboru.ts`.
@@ -39,13 +39,13 @@ If the logo arrives as PNG instead of SVG, change `GOKBORU_MEDIA.logo` in `src/c
 
 Draft English text written for layout. Replace with approved copy.
 
-- [ ] Feature list (4 items)
-- [ ] "Rooted in Turkic mythology" world introduction (2 paragraphs)
-- [ ] System requirements table (all values `TBA`)
+- [x] Feature list (6 items synced with Steam store page)
+- [x] "Rooted in Turkic mythology" world introduction (2 paragraphs synced with Steam store page)
+- [x] System requirements table (Minimum & Recommended synced with Steam store page)
 
 ## 4. Structured data — `src/pages/Gokboru.tsx`
 
-- [ ] `operatingSystem` (currently `"Windows"`) and `genre` (currently `Adventure`, `Exploration`) — confirm
+- [x] `operatingSystem` (`"Windows"`) and `genre` (`Action`, `Adventure`, `Strategy`, `Indie`) — synced with Steam
 - [ ] Trailer `uploadDate` — add once the trailer is published
 
 ## 5. Existing placeholders carried over from the old site
@@ -55,14 +55,14 @@ Draft English text written for layout. Replace with approved copy.
 
 ## 6. Site-wide — `src/config/site.ts`, `src/data/products.ts`, `public/media/badges/`
 
-- [ ] `SITE.contactEmail` — studio contact address (Press & Contact section on the home page)
-- [ ] `SITE.pressKitUrl` — studio press kit (falls back to `GOKBORU.pressKitUrl`)
+- [x] `SITE.contactEmail` — studio contact address (Press & Contact section on the home page)
+- [x] `SITE.pressKitUrl` — studio press kit (falls back to `GOKBORU.pressKitUrl`)
 - [ ] Store row decision (`STORE_ROW.mode`): `"links"` shows only stores with a URL, `"hidden"` removes the row. With every URL `null` the row is currently not shown.
   - [ ] `STORE_ROW.stores.googlePlay` — Google Play developer page
   - [ ] `STORE_ROW.stores.appStore` — App Store developer page
   - `steam` follows the Gökbörü Steam config; `epic` stays `null` (no Epic release)
 - [ ] Card taglines for all six products (`tagline` in `src/data/products.ts`, drafted from the store descriptions)
 - [ ] `appStoreUrl` for the four games, `googlePlayUrl` / `appStoreUrl` for WIMC and WIMB (a badge only appears when its URL is set)
-- [ ] `public/media/badges/google-play-badge.svg` — official "Get it on Google Play" badge (same file name)
-- [ ] `public/media/badges/app-store-badge.svg` — official "Download on the App Store" badge (same file name)
+- [x] `public/media/badges/google-play-badge.svg` — official "Get it on Google Play" badge (same file name)
+- [x] `public/media/badges/app-store-badge.svg` — official "Download on the App Store" badge (same file name)
 - [ ] About text on the home page (`src/pages/Home.tsx`, `#about`)

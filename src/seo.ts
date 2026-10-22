@@ -18,14 +18,14 @@ export const PAGE_META = {
     path: "/",
     title: "IYI Studios — Gökbörü, now on Steam",
     description:
-      "IYI Studios is an indie game studio. Wishlist Gökbörü, our atmospheric exploration game rooted in Turkic mythology, and discover Galaxy Go, Color Sticks and more.",
+      "IYI Studios is an indie game studio. Wishlist Gökbörü, our 3D arcade action game rooted in Turkic mythology, and discover Galaxy Go, Color Sticks and more.",
     image: DEFAULT_IMAGE,
   },
   gokboru: {
     path: "/gokboru",
     title: "Gökbörü — Wishlist on Steam | IYI Studios",
     description:
-      "An atmospheric exploration game that challenges your perception of reality with Turkic mythology. Wishlist Gökbörü on Steam.",
+      "Draw lines, claim territory and cleanse the land of Erlik's demons in this 3D arcade action game rooted in Turkic mythology. Wishlist Gökbörü on Steam.",
     image: GOKBORU_MEDIA.ogImage,
   },
   games: {
