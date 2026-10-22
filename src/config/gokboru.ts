@@ -7,7 +7,7 @@ export const GOKBORU = {
   steamStoreUrl: "https://store.steampowered.com/app/4886790/Gokboru/",
   trailerYoutubeId: null as string | null, // TODO(placeholder): YouTube video ID (not the URL), e.g. "dQw4w9WgXcQ"
   discordUrl: null as string | null, // TODO(placeholder): Discord invite link, if any
-  pressKitUrl: null as string | null, // TODO(placeholder): press kit zip or folder link
+  pressKitUrl: "/presskit/gokboru-presskit.zip",
   releaseWindow: "TBA", // TODO(placeholder): e.g. "2027"
   utm: { source: "iyistudios", medium: "web" },
 };
@@ -46,8 +46,8 @@ export function youtubeEmbedUrl(autoplay = true): string | null {
 // Fixed file names: replace the placeholder files with real ones under the same name.
 const dir = "/media/games/gokboru";
 export const GOKBORU_MEDIA = {
-  keyArt: `${dir}/key-art.webp`, // TODO(placeholder): 1920×1080
-  logo: `${dir}/logo.svg`, // TODO(placeholder): transparent, ~1200×400
+  keyArt: `${dir}/key-art.webp`,
+  logo: `${dir}/logo.png`,
   capsule: `${dir}/capsule-main.webp`, // TODO(placeholder): 1232×706
   trailerPoster: `${dir}/trailer-poster.webp`, // TODO(placeholder): 1920×1080
   heroLoop: `${dir}/hero-loop.mp4`, // TODO(placeholder): optional, 1920×1080, short, muted

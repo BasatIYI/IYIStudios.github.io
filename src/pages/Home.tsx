@@ -95,16 +95,16 @@ export default function Home() {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (reducedMotion || !parallaxRef.current) return;
-    const x = (window.innerWidth - e.clientX) / 50;
-    const y = (window.innerHeight - e.clientY) / 50;
-    parallaxRef.current.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+    const x = (window.innerWidth - e.clientX) / 90;
+    const y = (window.innerHeight - e.clientY) / 140;
+    parallaxRef.current.style.transform = `translate(${x}px, ${y}px) scale(1.02)`;
   };
 
   return (
     <div className="flex flex-col">
       {/* Gökbörü hero */}
       <section
-        className="relative flex min-h-[80vh] items-center justify-center overflow-hidden"
+        className="relative flex min-h-[75vh] md:min-h-[max(84vh,48vw)] items-end justify-center overflow-hidden"
         onMouseMove={handleMouseMove}
       >
         <div ref={parallaxRef} className="absolute inset-0 z-0 transition-transform duration-100 ease-out">
@@ -114,11 +114,11 @@ export default function Home() {
             width={1920}
             height={1080}
             {...highPriority}
-            className="h-full w-full object-cover opacity-60"
+            className="h-full w-full object-cover object-top opacity-80"
           />
           {HAS_HERO_LOOP && !reducedMotion && (
             <video
-              className="absolute inset-0 h-full w-full object-cover opacity-60"
+              className="absolute inset-0 h-full w-full object-cover object-top opacity-80"
               src={GOKBORU_MEDIA.heroLoop}
               poster={GOKBORU_MEDIA.keyArt}
               autoPlay
@@ -129,22 +129,22 @@ export default function Home() {
             />
           )}
         </div>
-        <div className="absolute inset-0 z-0 bg-gradient-to-t from-iyiblack via-iyiblack/30 to-transparent" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-t from-iyiblack via-iyiblack/45 to-transparent" />
 
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center">
-          <span className="mb-6 inline-block rounded-full bg-purple-900 px-3 py-1 text-xs font-bold text-purple-100">
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 pb-12 pt-36 text-center md:pb-16 md:pt-52">
+          <span className="mb-4 inline-block rounded-full border border-purple-400/30 bg-purple-900/90 px-3.5 py-1 text-xs font-bold tracking-widest text-purple-100 shadow-lg">
             WISHLIST NOW
           </span>
-          <h1 className="mb-6 w-full">
+          <h1 className="mb-5 w-full">
             <img
-              src={GOKBORU_MEDIA.logo}
+              {...responsive(GOKBORU_MEDIA.logo, "(min-width: 768px) 576px, 85vw")}
               alt="Gökbörü"
-              width={1200}
-              height={400}
-              className="mx-auto h-auto w-full max-w-2xl"
+              width={1280}
+              height={487}
+              className="mx-auto h-auto w-full max-w-md md:max-w-xl drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]"
             />
           </h1>
-          <p className="mb-10 max-w-2xl text-lg text-gray-200 md:text-2xl">{gokboruCopy.tagline}</p>
+          <p className="mb-8 max-w-2xl text-lg text-gray-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] md:text-2xl">{gokboruCopy.tagline}</p>
           <div className="flex flex-col items-center gap-4 sm:flex-row">
             <WishlistButton campaign="hero" size="lg" />
             <WatchTrailerButton />

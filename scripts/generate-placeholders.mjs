@@ -63,7 +63,8 @@ for (const a of assets) {
 
 // The logo stays an SVG (transparent background), so it is written as-is.
 const logoPath = join(OUT, "logo.svg");
-if (!existsSync(logoPath) || force) {
+const logoPngPath = join(OUT, "logo.png");
+if ((!existsSync(logoPath) && !existsSync(logoPngPath)) || force) {
   const logo = placeholderSvg({
     w: 1200,
     h: 400,

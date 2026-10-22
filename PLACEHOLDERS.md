@@ -15,7 +15,7 @@ Filling these in is enough; no other code change is needed.
 - [x] `steamStoreUrl` — optional; only if the store URL should differ from `https://store.steampowered.com/app/<APPID>/`.
 - [ ] `trailerYoutubeId` — YouTube video **ID**, not the URL. Enables the trailer player on `/gokboru`, the home "Watch Trailer" button and the `trailer` entry in the JSON-LD.
 - [ ] `discordUrl` — Discord invite (Community section).
-- [ ] `pressKitUrl` — press kit zip or folder link (Press section).
+- [x] `pressKitUrl` — press kit zip or folder link (Press section).
 - [ ] `releaseWindow` — e.g. `"2027"` (currently `"TBA"`).
 
 UTM values are fixed: `utm_source=iyistudios`, `utm_medium=web`, `utm_campaign` = `hero` · `announcement_bar` · `gokboru_page` · `home_card` · `games_page`.
@@ -26,7 +26,7 @@ Drop the real file in **with the same name**; no code change is needed.
 `npm run placeholders` only creates files that are missing, so it never overwrites a real asset.
 
 - [x] `key-art.webp` — 1920×1080, WebP. Home hero background, `/gokboru` header, JSON-LD `image`.
-- [x] `logo.svg` — ~1200×400, transparent SVG. Home hero, `/gokboru` header.
+- [x] `logo.png` — 1280×487, transparent PNG. Home hero, `/gokboru` header.
 - [x] `capsule-main.webp` — 1232×706, WebP. Home Gökbörü card, Games page PC card.
 - [x] `trailer-poster.webp` — 1920×1080, WebP. Trailer cover shown before the player loads.
 - [ ] `hero-loop.mp4` — 1920×1080, short, muted, MP4 (H.264). Optional home hero video. **Not created**: while the file is absent the key art is used. Detected at build time; never played when `prefers-reduced-motion` is on.

@@ -4,6 +4,7 @@
   "quality": 78,
   "presets": [
     { "name": "logo", "match": "^/media/branding/companylogo\\.png$", "widths": [80, 160] },
+    { "name": "game-logo", "match": "^/media/games/gokboru/logo\\.png$", "widths": [640, 1280] },
     { "name": "icon", "match": "^/media/(games|apps)/[^/]+/icon\\.png$", "widths": [128, 256] },
     { "name": "phone", "match": "^/media/(games|apps)/[^/]+/screenshot-\\d+\\.png$", "widths": [360, 720] },
     {

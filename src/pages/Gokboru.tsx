@@ -76,27 +76,27 @@ export default function Gokboru() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd() }} />
 
       {/* Header: key art, logo, wishlist */}
-      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[70vh] md:min-h-[max(78vh,46vw)] items-end justify-center overflow-hidden">
         <img
           {...responsive(GOKBORU_MEDIA.keyArt, "100vw")}
           alt=""
           width={1920}
           height={1080}
           {...highPriority}
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          className="absolute inset-0 h-full w-full object-cover object-top opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-iyiblack via-iyiblack/40 to-transparent" />
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 py-20 text-center">
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 pb-14 pt-36 text-center md:pb-16 md:pt-48">
           <span className="mb-6 inline-block rounded-full bg-purple-900 px-3 py-1 text-xs font-bold text-purple-100">
             WISHLIST NOW
           </span>
           <h1 className="mb-6 w-full">
             <img
-              src={GOKBORU_MEDIA.logo}
+              {...responsive(GOKBORU_MEDIA.logo, "(min-width: 768px) 512px, 85vw")}
               alt="Gökbörü"
-              width={1200}
-              height={400}
-              className="mx-auto h-auto w-full max-w-xl"
+              width={1280}
+              height={487}
+              className="mx-auto h-auto w-full max-w-md md:max-w-lg drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]"
             />
           </h1>
           <p className="mb-8 max-w-2xl text-lg text-gray-200 md:text-xl">{copy.tagline}</p>
