@@ -62,7 +62,7 @@ Draft English text written for layout. Replace with approved copy.
   - [ ] `STORE_ROW.stores.appStore` — App Store developer page
   - `steam` follows the Gökbörü Steam config; `epic` stays `null` (no Epic release)
 - [ ] Card taglines for all six products (`tagline` in `src/data/products.ts`, drafted from the store descriptions)
-- [ ] `appStoreUrl` for the four games, `googlePlayUrl` / `appStoreUrl` for WIMC and WIMB (a badge only appears when its URL is set)
+- [x] `appStoreUrl` for the four games, `googlePlayUrl` / `appStoreUrl` for WIMC and WIMB (a badge only appears when its URL is set)
 - [x] `public/media/badges/google-play-badge.svg` — official "Get it on Google Play" badge (same file name)
 - [x] `public/media/badges/app-store-badge.svg` — official "Download on the App Store" badge (same file name)
 - [ ] About text on the home page (`src/pages/Home.tsx`, `#about`)

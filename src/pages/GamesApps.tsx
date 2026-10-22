@@ -57,28 +57,28 @@ function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { prod
         <p className="mb-4 text-xs md:text-sm leading-relaxed text-gray-300 line-clamp-3">{product.tagline}</p>
         <div className="mt-auto flex flex-col gap-3">
           {(product.googlePlayUrl || product.appStoreUrl) && (
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="grid grid-cols-2 items-center gap-2">
               {product.googlePlayUrl && (
-                <a href={product.googlePlayUrl} target="_blank" rel="noopener noreferrer">
+                <a href={product.googlePlayUrl} target="_blank" rel="noopener noreferrer" className="block">
                   <img
                     src="/media/badges/google-play-badge.svg"
                     alt={`Get ${product.name} on Google Play`}
                     width={135}
                     height={40}
                     loading="lazy"
-                    className="h-8 md:h-10 w-auto"
+                    className="h-auto max-h-9 w-full object-contain"
                   />
                 </a>
               )}
               {product.appStoreUrl && (
-                <a href={product.appStoreUrl} target="_blank" rel="noopener noreferrer">
+                <a href={product.appStoreUrl} target="_blank" rel="noopener noreferrer" className="block">
                   <img
                     src="/media/badges/app-store-badge.svg"
                     alt={`Download ${product.name} on the App Store`}
                     width={135}
                     height={40}
                     loading="lazy"
-                    className="h-8 md:h-10 w-auto"
+                    className="h-auto max-h-9 w-full object-contain"
                   />
                 </a>
               )}
