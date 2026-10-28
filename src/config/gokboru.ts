@@ -52,10 +52,7 @@ export const GOKBORU_MEDIA = {
   trailerPoster: `${dir}/trailer-poster.webp`, // TODO(placeholder): 1920×1080
   heroLoop: `${dir}/hero-loop.mp4`, // TODO(placeholder): optional, 1920×1080, short, muted
   ogImage: `${dir}/og-image.png`, // TODO(placeholder): 1200×630 PNG
-  screenshots: [
-    ...Array.from({ length: 15 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
-    ...[1, 2, 3].map((n) => `${dir}/artwork-0${n}.webp`),
-  ],
+  screenshots: Array.from({ length: 10 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
 };
 
 /** True when public/media/games/gokboru/hero-loop.mp4 existed at build time. */
