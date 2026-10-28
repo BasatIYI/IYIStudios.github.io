@@ -19,10 +19,11 @@ export default function SteamWidget() {
     <iframe
       src={src}
       title="Gökbörü on Steam"
-      width="100%"
-      height="190"
+      frameBorder={0}
+      width={646}
+      height={190}
       loading="lazy"
-      className="w-full rounded-lg border-0"
+      className="w-full max-w-[646px] rounded-lg border-0"
     />
   );
 }
