@@ -40,18 +40,19 @@ export const gokboruCopy = {
   systemRequirements: {
     columns: ["Minimum", "Recommended"] as const,
     rows: [
-      { label: "OS", values: ["Windows 10 (64-bit)", "Windows 10 / 11 (64-bit)"] },
-      { label: "Processor", values: ["Intel Core i3-6100 / AMD Ryzen 3 1200", "Intel Core i5-8400 / AMD Ryzen 5 2600"] },
+      { label: "OS", values: ["Windows 10 64-bit", "Windows 10/11 64-bit"] },
+      {
+        label: "Processor",
+        values: ["Intel Core i5-6500 / AMD Ryzen 3 1300X (4-core)", "Intel Core i5-9400 / AMD Ryzen 5 3600"],
+      },
       { label: "Memory", values: ["8 GB RAM", "16 GB RAM"] },
       {
         label: "Graphics",
-        values: [
-          "NVIDIA GeForce GTX 960 / AMD Radeon RX 470 (2 GB VRAM)",
-          "NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 (4 GB+ VRAM)",
-        ],
+        values: ["NVIDIA GTX 1050 Ti 4 GB / AMD RX 570 4 GB", "NVIDIA GTX 1660 Super / AMD RX 5600 XT (6 GB)"],
       },
-      { label: "DirectX", values: ["Version 11", "Version 11"] },
-      { label: "Storage", values: ["4 GB available space", "4 GB available space"] },
+      { label: "DirectX", values: ["Version 11", "Version 12"] },
+      { label: "Storage", values: ["3 GB available space", "3 GB available space (SSD)"] },
+      { label: "Notes", values: ["1080p, Low/Balanced quality", "1080p, High quality, 60 FPS"] },
     ],
   },
 };
