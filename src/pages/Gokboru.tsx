@@ -62,7 +62,7 @@ function jsonLd() {
       description: copy.tagline,
       thumbnailUrl: absoluteUrl(GOKBORU_MEDIA.trailerPoster),
       embedUrl: `https://www.youtube-nocookie.com/embed/${GOKBORU.trailerYoutubeId}`,
-      // TODO(placeholder): add uploadDate (ISO 8601) once the trailer is published
+      uploadDate: "2026-10-30",
     };
   }
   return JSON.stringify(data).replace(/</g, "\\u003c");

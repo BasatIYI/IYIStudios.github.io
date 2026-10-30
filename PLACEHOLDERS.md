@@ -13,7 +13,7 @@ Filling these in is enough; no other code change is needed.
 
 - [x] `steamAppId` — Steam App ID (e.g. `"1234560"`). Enables every wishlist button, the announcement bar link, the Steam widget and `sameAs` in the JSON-LD. The store URL is derived from it.
 - [x] `steamStoreUrl` — optional; only if the store URL should differ from `https://store.steampowered.com/app/<APPID>/`.
-- [ ] `trailerYoutubeId` — YouTube video **ID**, not the URL. Enables the trailer player on `/gokboru`, the home "Watch Trailer" button and the `trailer` entry in the JSON-LD.
+- [x] `trailerYoutubeId` — YouTube video **ID**, not the URL. Enables the trailer player on `/gokboru`, the home "Watch Trailer" button and the `trailer` entry in the JSON-LD.
 - [ ] `discordUrl` — Discord invite (Community section).
 - [x] `pressKitUrl` — press kit zip or folder link (Press section).
 - [ ] `releaseWindow` — e.g. `"2027"` (currently `"TBA"`).
@@ -46,7 +46,7 @@ Draft English text written for layout. Replace with approved copy.
 ## 4. Structured data — `src/pages/Gokboru.tsx`
 
 - [x] `operatingSystem` (`"Windows"`) and `genre` (`Action`, `Adventure`, `Strategy`, `Indie`) — synced with Steam
-- [ ] Trailer `uploadDate` — add once the trailer is published
+- [x] Trailer `uploadDate` — add once the trailer is published
 
 ## 5. Existing placeholders carried over from the old site
 
