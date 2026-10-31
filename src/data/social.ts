@@ -1,6 +1,13 @@
-import { FacebookIcon, InstagramIcon, XIcon, YouTubeIcon } from "../components/icons";
+import { DiscordIcon, FacebookIcon, InstagramIcon, XIcon, YouTubeIcon } from "../components/icons";
 
 export const socialLinks = [
+  {
+    name: "Discord",
+    href: "https://discord.gg/wbyRSjavpX",
+    Icon: DiscordIcon,
+    className: "text-gray-400 hover:text-indigo-400",
+    iconClass: "w-6 h-6",
+  },
   {
     name: "Instagram",
     href: "https://www.instagram.com/iyistudios",

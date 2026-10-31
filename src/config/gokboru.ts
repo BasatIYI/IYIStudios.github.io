@@ -6,7 +6,7 @@ export const GOKBORU = {
   steamAppId: "4886790",
   steamStoreUrl: "https://store.steampowered.com/app/4886790/Gokboru/",
   trailerYoutubeId: "r_IZLDmio_w" as string | null,
-  discordUrl: null as string | null, // TODO(placeholder): Discord invite link, if any
+  discordUrl: "https://discord.gg/wbyRSjavpX" as string | null,
   pressKitUrl: "/presskit/gokboru-presskit.zip",
   releaseWindow: "TBA", // TODO(placeholder): e.g. "2027"
   utm: { source: "iyistudios", medium: "web" },

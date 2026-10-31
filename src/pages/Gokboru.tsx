@@ -179,7 +179,7 @@ export default function Gokboru() {
         </p>
         <div className="flex flex-wrap items-center gap-4">
           <OptionalLink href={GOKBORU.discordUrl} label="Join our Discord" pending="Discord — coming soon" />
-          {socialLinks.map(({ name, href, Icon }) => (
+          {socialLinks.filter(({ name }) => name !== "Discord").map(({ name, href, Icon }) => (
             <a
               key={name}
               href={href}
