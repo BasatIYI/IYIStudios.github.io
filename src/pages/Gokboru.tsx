@@ -128,6 +128,20 @@ export default function Gokboru() {
         </div>
       </Section>
 
+      {GOKBORU.bossRevealYoutubeId && (
+        <Section id="boss-reveal" title="Boss Reveal">
+          <p className="mb-6 max-w-3xl text-lg text-gray-300">
+            Every realm culminates in a showdown against a legendary figure from Turkic mythology—Tepegöz, Alkarısı,
+            Karabasan, Abra &amp; Yutpa, Kara Şaman, Temir Han and Erlik Han.
+          </p>
+          <TrailerFacade
+            videoId={GOKBORU.bossRevealYoutubeId}
+            posterSrc={GOKBORU_MEDIA.bossRevealPoster}
+            title="Gökbörü — Boss Reveal"
+          />
+        </Section>
+      )}
+
       <Section id="screenshots" title="Screenshots">
         <Gallery images={GOKBORU_MEDIA.screenshots} name={copy.name} />
       </Section>

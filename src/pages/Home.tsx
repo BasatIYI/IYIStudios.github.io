@@ -97,6 +97,35 @@ function WatchTrailerButton() {
   );
 }
 
+function BossRevealButton() {
+  const [open, setOpen] = useState(false);
+  if (!GOKBORU.bossRevealYoutubeId) return null;
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-6 py-3 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-white/15"
+      >
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        Boss Reveal
+      </button>
+      <Modal open={open} onClose={() => setOpen(false)} label="Gökbörü — Boss Reveal">
+        <div className="w-full max-w-5xl">
+          <TrailerFacade
+            autoLoad
+            videoId={GOKBORU.bossRevealYoutubeId}
+            posterSrc={GOKBORU_MEDIA.bossRevealPoster}
+            title="Gökbörü — Boss Reveal"
+          />
+        </div>
+      </Modal>
+    </>
+  );
+}
+
 export default function Home() {
   usePageMeta(PAGE_META.home);
   const reducedMotion = usePrefersReducedMotion();
@@ -210,6 +239,7 @@ export default function Home() {
               <p className="text-gray-300 text-lg mb-6">Our first major PC title. {gokboruCopy.tagline}</p>
               <div className="flex flex-wrap items-center gap-4">
                 <WishlistButton campaign="home_card" />
+                <BossRevealButton />
                 <Link
                   to="/gokboru"
                   className="px-6 py-3 text-sm font-bold tracking-wide text-gray-200 hover:text-white underline decoration-gray-500 underline-offset-4 hover:decoration-white"

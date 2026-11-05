@@ -1,14 +1,24 @@
 import { useState } from "react";
-import { GOKBORU_MEDIA, youtubeEmbedUrl } from "../config/gokboru";
+import { GOKBORU, GOKBORU_MEDIA, youtubeEmbedUrl } from "../config/gokboru";
 import { responsive } from "../images";
 
 /**
  * Lightweight YouTube facade: only the poster is loaded until the visitor
  * clicks play, then the youtube-nocookie iframe replaces it.
  */
-export default function TrailerFacade({ autoLoad = false }: { autoLoad?: boolean }) {
+export default function TrailerFacade({
+  autoLoad = false,
+  videoId = GOKBORU.trailerYoutubeId,
+  posterSrc = GOKBORU_MEDIA.trailerPoster,
+  title = "Gökbörü trailer",
+}: {
+  autoLoad?: boolean;
+  videoId?: string | null;
+  posterSrc?: string;
+  title?: string;
+}) {
   const [loaded, setLoaded] = useState(autoLoad);
-  const embed = youtubeEmbedUrl();
+  const embed = youtubeEmbedUrl(true, videoId);
 
   if (embed && loaded) {
     return (
@@ -16,7 +26,7 @@ export default function TrailerFacade({ autoLoad = false }: { autoLoad?: boolean
         <iframe
           className="h-full w-full"
           src={embed}
-          title="Gökbörü trailer"
+          title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
@@ -27,7 +37,7 @@ export default function TrailerFacade({ autoLoad = false }: { autoLoad?: boolean
 
   const poster = (
     <img
-      {...responsive(GOKBORU_MEDIA.trailerPoster, "(min-width: 1152px) 1152px, 100vw")}
+      {...responsive(posterSrc, "(min-width: 1152px) 1152px, 100vw")}
       alt=""
       width={1920}
       height={1080}
@@ -37,7 +47,6 @@ export default function TrailerFacade({ autoLoad = false }: { autoLoad?: boolean
   );
 
   if (!embed) {
-    // TODO(placeholder): set GOKBORU.trailerYoutubeId to enable the player.
     return (
       <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
         {poster}
@@ -55,7 +64,7 @@ export default function TrailerFacade({ autoLoad = false }: { autoLoad?: boolean
       type="button"
       onClick={() => setLoaded(true)}
       className="group relative block aspect-video w-full overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-2xl"
-      aria-label="Play Gökbörü trailer"
+      aria-label={`Play ${title}`}
     >
       {poster}
       <span className="absolute inset-0 bg-black/30 transition group-hover:bg-black/10" />
