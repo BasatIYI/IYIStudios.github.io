@@ -3,31 +3,31 @@
 export const gokboruCopy = {
   name: "Gökbörü",
   tagline:
-    "Draw lines, claim territory and cleanse the land of Erlik's demons in this 3D arcade action game rooted in Turkic mythology.",
+    "Draw lines, claim territory and purge Erlik's demons in this 3D territory-capture action roguelite rooted in Turkic mythology. Master divine Boons, unleash arena power-ups, survive 10 mythic bosses and chase high scores — every open line is a gamble.",
   features: [
     {
       title: "Draw the Line, Claim the Land",
-      body: "Leave safe ground, sweep a line across the 3D arena and close it back onto your territory to cleanse everything you enclose.",
+      body: "Leave safe ground, sweep a line across the 3D arena and close it back onto your territory to cleanse everything you enclose. Purge at least 90% of the arena to triumph.",
     },
     {
-      title: "High-Risk, High-Reward Action",
-      body: "Small captures are safe and steady; massive captures build combo multipliers and high scores, but open lines ignite if touched by enemies.",
+      title: "Divine Boons (Kut System)",
+      body: "Shape your build with divine Boons that alter your movement and survival: Dash to safety, Deflect ignited trail shocks, and freeze time with Blizzard Mastery.",
     },
     {
-      title: "Crush the Körmös Horde",
-      body: "Seal the ground beneath Erlik's shadow minions to destroy them instantly, or pick them off from a distance with bows, arrows and piercing spears.",
+      title: "High-Risk, High-Reward Gambling",
+      body: "Small captures are steady; giant sweeps skyrocket your score and combo multipliers, but open lines ignite when touched by Erlik's minions.",
     },
     {
-      title: "Mythic Boss Battles",
-      body: "Every realm ends with a legendary figure from Turkic myth—face Tepegöz, Alkarısı, Karabasan, Abra & Yutpa, Kara Şaman, Temir Han and Erlik Han.",
+      title: "10 Mythic Boss Battles",
+      body: "Confront legendary figures from Turkic mythology—each testing a specific flaw: Peri Kılıcı, Tepegöz, Alkarısı, Karabasan, Yel Büke, Abra & Yutpa, Kara Şaman, Erlik Kızları, Temir Han, and the Lord of the Underworld, Erlik Han.",
     },
     {
-      title: "Power-Ups & Tactical Edge",
-      body: "Enclose power boxes on the battlefield to grab a temporary edge with Speed Boost, Freeze, Bow & Arrows, Spear throws, Clear Minions and Extra Lives.",
+      title: "Tactical Arena Power-Ups",
+      body: "Enclose battlefield Power Boxes to claim Speed Boosts (Wolf Spirit), Freeze (Breath of Ülgen), Sky Arrows, Kızagan's Lance, Minion Clears and Extra Lives.",
     },
     {
-      title: "Epic Story Cutscenes",
-      body: "Fight as Kızagan and Baybörü, commander of the Celestial Wolf's army, guided by Bürküt across chapters told in the spirit of the Dede Korkut epics.",
+      title: "Cinematic Epics in Dede Korkut's Spirit",
+      body: "Fight as Kızagan and Baybörü, guided by Bürküt across handcrafted top-down arenas with cutscenes that can be rewatched anytime in the Story Gallery.",
     },
   ],
   world: {

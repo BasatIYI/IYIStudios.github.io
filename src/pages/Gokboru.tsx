@@ -49,7 +49,7 @@ function jsonLd() {
     image: absoluteUrl(GOKBORU_MEDIA.keyArt),
     gamePlatform: "PC",
     operatingSystem: "Windows",
-    genre: ["Action", "Adventure", "Strategy", "Indie"],
+    genre: ["Action", "Roguelite", "Arcade", "Top-Down", "Mythology", "Indie"],
     applicationCategory: "Game",
     author: { "@type": "Organization", name: "IYI Studios", url: SITE_URL },
     publisher: { "@type": "Organization", name: "IYI Studios", url: SITE_URL },
@@ -138,6 +138,20 @@ export default function Gokboru() {
             videoId={GOKBORU.bossRevealYoutubeId}
             posterSrc={GOKBORU_MEDIA.bossRevealPoster}
             title="Gökbörü — Boss Reveal"
+          />
+        </Section>
+      )}
+
+      {GOKBORU.visualUpdateYoutubeId && (
+        <Section id="visual-update" title="Visual Update & Playable Boons">
+          <p className="mb-6 max-w-3xl text-lg text-gray-300">
+            See the overhauled visual atmosphere, divine Boons (Kut System), Deflect and Dash mechanics, and tactical
+            arena power-ups in action.
+          </p>
+          <TrailerFacade
+            videoId={GOKBORU.visualUpdateYoutubeId}
+            posterSrc={GOKBORU_MEDIA.visualUpdatePoster}
+            title="Gökbörü — Visual Update Trailer"
           />
         </Section>
       )}

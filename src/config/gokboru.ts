@@ -7,6 +7,7 @@ export const GOKBORU = {
   steamStoreUrl: "https://store.steampowered.com/app/4886790/Gokboru/",
   trailerYoutubeId: "r_IZLDmio_w" as string | null,
   bossRevealYoutubeId: "swHfokx1yrA" as string | null,
+  visualUpdateYoutubeId: "JaGRAbsxZEY" as string | null,
   discordUrl: "https://discord.gg/wbyRSjavpX" as string | null,
   pressKitUrl: "/presskit/gokboru-presskit.zip",
   releaseWindow: "TBA", // TODO(placeholder): e.g. "2027"
@@ -52,6 +53,7 @@ export const GOKBORU_MEDIA = {
   capsule: `${dir}/capsule-main.webp`, // TODO(placeholder): 1232×706
   trailerPoster: `${dir}/trailer-poster.webp`, // TODO(placeholder): 1920×1080
   bossRevealPoster: `${dir}/boss-reveal-poster.webp`,
+  visualUpdatePoster: `${dir}/visual-update-poster.webp`,
   heroLoop: `${dir}/hero-loop.mp4`, // TODO(placeholder): optional, 1920×1080, short, muted
   ogImage: `${dir}/og-image.png`, // TODO(placeholder): 1200×630 PNG
   screenshots: Array.from({ length: 10 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
