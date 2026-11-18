@@ -13,20 +13,20 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="tr" element={<Home lang="tr" />} />
         <Route path="gokboru" element={<Gokboru />} />
+        <Route path="tr/gokboru" element={<Gokboru lang="tr" />} />
         <Route path="games" element={<GamesApps products={products} />} />
         <Route path="games-apps" element={<Navigate to="/games" replace />} />
         <Route
           path="google-play-store"
           element={
-            // TODO(placeholder): real Google Play developer ID
             <ExternalRedirect to="https://play.google.com/store/apps/dev?id=YOUR_DEV_ID" label="Google Play" />
           }
         />
         <Route
           path="app-store"
           element={
-            // TODO(placeholder): real App Store developer ID
             <ExternalRedirect to="https://apps.apple.com/developer/idYOUR_DEV_ID" label="App Store" />
           }
         />

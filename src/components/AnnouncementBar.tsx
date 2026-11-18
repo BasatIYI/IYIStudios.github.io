@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { steamLink } from "../config/gokboru";
+import { Link, useLocation } from "react-router-dom";
+import { ANNOUNCEMENT_CONFIG, ANNOUNCEMENT_MODE, steamLink } from "../config/gokboru";
 
 // Keep in sync with the inline script in index.html, which hides the bar
 // before first paint for visitors who already dismissed it.
@@ -8,6 +8,7 @@ export const ANNOUNCEMENT_KEY = "iyi:announcement:gokboru-wishlist";
 
 export default function AnnouncementBar() {
   const [open, setOpen] = useState(true);
+  const location = useLocation();
   if (!open) return null;
 
   const dismiss = () => {
@@ -19,21 +20,22 @@ export default function AnnouncementBar() {
     }
   };
 
-  const href = steamLink("announcement_bar");
+  const isTr = location.pathname.startsWith("/tr");
+  const cfg = isTr ? ANNOUNCEMENT_CONFIG[ANNOUNCEMENT_MODE].tr : ANNOUNCEMENT_CONFIG[ANNOUNCEMENT_MODE].en;
+  const href = steamLink(cfg.campaign);
   const cta = "font-bold underline decoration-white/40 underline-offset-4 hover:decoration-white";
 
   return (
     <div className="announcement-bar relative bg-gradient-to-r from-blue-700 to-purple-700 text-white">
-      <p className="container mx-auto px-12 py-2 text-center text-sm">
-        Gökbörü is now on Steam —{" "}
+      <p className="container mx-auto px-12 py-2 text-center text-sm font-medium">
+        {cfg.text}
         {href ? (
           <a href={href} target="_blank" rel="noopener" className={cta}>
-            Wishlist
+            {cfg.action}
           </a>
         ) : (
-          // TODO(placeholder): points to the Gökbörü page until a Steam URL is configured.
-          <Link to="/gokboru" className={cta}>
-            Wishlist
+          <Link to={isTr ? "/tr/gokboru" : "/gokboru"} className={cta}>
+            {cfg.action}
           </Link>
         )}
       </p>

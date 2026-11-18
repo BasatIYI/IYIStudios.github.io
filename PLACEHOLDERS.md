@@ -16,7 +16,7 @@ Filling these in is enough; no other code change is needed.
 - [x] `trailerYoutubeId` — YouTube video **ID**, not the URL. Enables the trailer player on `/gokboru`, the home "Watch Trailer" button and the `trailer` entry in the JSON-LD.
 - [x] `discordUrl` — Discord invite (Community section).
 - [x] `pressKitUrl` — press kit zip or folder link (Press section).
-- [ ] `releaseWindow` — e.g. `"2027"` (currently `"TBA"`).
+- [x] `releaseWindow` — e.g. `"March 2027"` (set to `"Free demo: coming soon · Full release: March 2027"`).
 
 UTM values are fixed: `utm_source=iyistudios`, `utm_medium=web`, `utm_campaign` = `hero` · `announcement_bar` · `gokboru_page` · `home_card` · `games_page`.
 

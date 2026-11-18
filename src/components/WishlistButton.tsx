@@ -14,23 +14,22 @@ export default function WishlistButton({
   campaign,
   size = "md",
   className = "",
+  label = "Wishlist on Steam",
 }: {
   campaign: SteamCampaign;
   size?: keyof typeof sizes;
   className?: string;
+  label?: string;
 }) {
   const href = steamLink(campaign);
   const base = `inline-flex items-center justify-center gap-3 rounded-full font-bold tracking-wide transition-all duration-300 ${sizes[size]} ${className}`;
 
   if (!href) {
-    // TODO(placeholder): becomes a live link once GOKBORU.steamAppId / steamStoreUrl is set.
     return (
-      <span
-        className={`${base} border border-gray-600 bg-gray-800/60 text-gray-300 cursor-not-allowed`}
-      >
+      <span className={`${base} border border-gray-600 bg-gray-800/60 text-gray-300 cursor-not-allowed`}>
         <SteamIcon className="w-5 h-5" />
         <span>
-          Wishlist on Steam <span className="font-normal text-gray-400">— link coming soon</span>
+          {label} <span className="font-normal text-gray-400">— coming soon</span>
         </span>
       </span>
     );
@@ -44,7 +43,7 @@ export default function WishlistButton({
       className={`${base} bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_35px_rgba(79,70,229,0.6)] hover:scale-105`}
     >
       <SteamIcon className="w-5 h-5" />
-      Wishlist on Steam
+      {label}
     </a>
   );
 }

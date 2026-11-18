@@ -26,6 +26,9 @@ function headTags(meta) {
     `<title>${attr(meta.title)}</title>`,
     `<meta name="description" content="${attr(meta.description)}" />`,
     meta.noindex ? `<meta name="robots" content="noindex" />` : `<link rel="canonical" href="${url}" />`,
+    ...(meta.alternates ?? []).map(
+      (alt) => `<link rel="alternate" hreflang="${alt.lang}" href="${absoluteUrl(alt.path)}" />`,
+    ),
     `<meta property="og:title" content="${attr(meta.title)}" />`,
     `<meta property="og:description" content="${attr(meta.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
@@ -45,7 +48,10 @@ function write(file, html) {
 }
 
 for (const { url, file, meta } of PRERENDER_ROUTES) {
-  const html = template.replace("<!--app-head-->", headTags(meta)).replace("<!--app-html-->", render(url));
+  let html = template.replace("<!--app-head-->", headTags(meta)).replace("<!--app-html-->", render(url));
+  if (meta.lang) {
+    html = html.replace('<html lang="en">', `<html lang="${meta.lang}">`);
+  }
   write(file, html);
 }
 

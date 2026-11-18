@@ -4,9 +4,10 @@ import { AppleIcon, EpicGamesIcon, GamepadIcon, GooglePlayIcon, SteamIcon } from
 import WishlistButton from "../components/WishlistButton";
 import TrailerFacade from "../components/TrailerFacade";
 import Modal from "../components/Modal";
+import GameplayLoopVideo from "../components/GameplayLoopVideo";
 import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP } from "../config/gokboru";
-import { gokboruCopy } from "../data/gokboru";
-import { PAGE_META, usePageMeta } from "../seo";
+import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
+import { PAGE_META, SITE_URL, usePageMeta } from "../seo";
 import { highPriority } from "../utils";
 import { SITE, STORE_ROW } from "../config/site";
 import { GOKBORU as GOKBORU_CONFIG } from "../config/gokboru";
@@ -46,7 +47,7 @@ function StoreRow() {
 }
 
 function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(true); // assume reduced until we know, so nothing animates early
+  const [reduced, setReduced] = useState(true);
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
@@ -57,7 +58,7 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function WatchTrailerButton() {
+function WatchTrailerButton({ isTr = false }: { isTr?: boolean }) {
   const [open, setOpen] = useState(false);
   const base =
     "inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-bold tracking-wide transition-all duration-300";
@@ -65,10 +66,10 @@ function WatchTrailerButton() {
   if (!GOKBORU.trailerYoutubeId) {
     return (
       <Link
-        to="/gokboru"
+        to={isTr ? "/tr/gokboru" : "/gokboru"}
         className={`${base} border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/20`}
       >
-        Explore Gökbörü
+        {isTr ? "Gökbörü'yü Keşfet" : "Explore Gökbörü"}
         <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
@@ -86,18 +87,18 @@ function WatchTrailerButton() {
         <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M8 5v14l11-7z" />
         </svg>
-        Watch Trailer
+        {isTr ? "Fragmanı İzle" : "Watch Trailer"}
       </button>
-      <Modal open={open} onClose={() => setOpen(false)} label="Gökbörü trailer">
+      <Modal open={open} onClose={() => setOpen(false)} label={isTr ? "Gökbörü fragmanı" : "Gökbörü trailer"}>
         <div className="w-full max-w-5xl">
-          <TrailerFacade autoLoad />
+          <TrailerFacade autoLoad title={isTr ? "Gökbörü fragmanı" : "Gökbörü trailer"} />
         </div>
       </Modal>
     </>
   );
 }
 
-function BossRevealButton() {
+function BossRevealButton({ isTr = false }: { isTr?: boolean }) {
   const [open, setOpen] = useState(false);
   if (!GOKBORU.bossRevealYoutubeId) return null;
   return (
@@ -110,15 +111,15 @@ function BossRevealButton() {
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M8 5v14l11-7z" />
         </svg>
-        Boss Reveal
+        {isTr ? "Boss Tanıtımı" : "Boss Reveal"}
       </button>
-      <Modal open={open} onClose={() => setOpen(false)} label="Gökbörü — Boss Reveal">
+      <Modal open={open} onClose={() => setOpen(false)} label={isTr ? "Gökbörü — Boss Tanıtımı" : "Gökbörü — Boss Reveal"}>
         <div className="w-full max-w-5xl">
           <TrailerFacade
             autoLoad
             videoId={GOKBORU.bossRevealYoutubeId}
             posterSrc={GOKBORU_MEDIA.bossRevealPoster}
-            title="Gökbörü — Boss Reveal"
+            title={isTr ? "Gökbörü — Boss Tanıtımı" : "Gökbörü — Boss Reveal"}
           />
         </div>
       </Modal>
@@ -126,8 +127,30 @@ function BossRevealButton() {
   );
 }
 
-export default function Home() {
-  usePageMeta(PAGE_META.home);
+function organizationJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "IYI Studios",
+    url: SITE_URL,
+    logo: `${SITE_URL}/media/branding/companylogo.png`,
+    description: "Independent game studio creating games with soul and atmosphere.",
+    sameAs: [
+      "https://store.steampowered.com/app/4886790/Gokboru/",
+      "https://discord.gg/wbyRSjavpX",
+      "https://www.youtube.com/@iyigames6606",
+      "https://x.com/IYIStudios",
+      "https://www.instagram.com/iyistudios",
+      "https://www.facebook.com/iyigamesmete",
+    ],
+  };
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
+export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
+  const isTr = lang === "tr";
+  usePageMeta(isTr ? PAGE_META.homeTr : PAGE_META.home);
+  const copy = isTr ? gokboruCopyTr : gokboruCopy;
   const reducedMotion = usePrefersReducedMotion();
   const parallaxRef = useRef<HTMLDivElement>(null);
 
@@ -140,6 +163,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: organizationJsonLd() }} />
+
       {/* Gökbörü hero */}
       <section
         className="relative flex min-h-[75vh] md:min-h-[max(84vh,48vw)] items-end justify-center overflow-hidden"
@@ -171,9 +196,10 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 pb-12 pt-36 text-center md:pb-16 md:pt-52">
           <span className="mb-4 inline-block rounded-full border border-purple-400/30 bg-purple-900/90 px-3.5 py-1 text-xs font-bold tracking-widest text-purple-100 shadow-lg">
-            WISHLIST NOW
+            {isTr ? "İSTEK LİSTESİNE EKLE" : "WISHLIST NOW"}
           </span>
           <h1 className="mb-5 w-full">
+            <span className="sr-only">Gökbörü</span>
             <img
               {...responsive(GOKBORU_MEDIA.logo, "(min-width: 768px) 576px, 85vw")}
               alt="Gökbörü"
@@ -182,10 +208,21 @@ export default function Home() {
               className="mx-auto h-auto w-full max-w-md md:max-w-xl drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]"
             />
           </h1>
-          <p className="mb-8 max-w-2xl text-lg text-gray-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] md:text-2xl">{gokboruCopy.tagline}</p>
+          <p className="mb-8 max-w-2xl text-lg text-gray-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] md:text-2xl leading-relaxed">
+            {copy.tagline}
+          </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <WishlistButton campaign="hero" size="lg" />
-            <WatchTrailerButton />
+            <WishlistButton
+              campaign={isTr ? "hero_tr" : "hero"}
+              size="lg"
+              label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
+            />
+            <WatchTrailerButton isTr={isTr} />
+          </div>
+
+          {/* Gameplay loop video preview under hero */}
+          <div className="mt-10 w-full">
+            <GameplayLoopVideo isTr={isTr} />
           </div>
         </div>
       </section>
@@ -195,21 +232,38 @@ export default function Home() {
         <div className="container mx-auto flex flex-col items-center gap-6 px-4 text-center md:flex-row md:justify-between md:text-left">
           <div>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              Indie games with{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">soul</span>{" "}
-              and{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                atmosphere
-              </span>
+              {isTr ? (
+                <>
+                  Ruhu ve{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">atmosferi</span>{" "}
+                  olan{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                    bağımsız oyunlar
+                  </span>
+                </>
+              ) : (
+                <>
+                  Indie games with{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">soul</span>{" "}
+                  and{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                    atmosphere
+                  </span>
+                </>
+              )}
             </h2>
-            <p className="mt-2 text-lg text-gray-300">Creating immersive digital experiences for mobile and PC.</p>
+            <p className="mt-2 text-lg text-gray-300">
+              {isTr
+                ? "Mobil ve PC için sürükleyici dijital deneyimler geliştiriyoruz."
+                : "Creating immersive digital experiences for mobile and PC."}
+            </p>
           </div>
           <Link
             to="/games"
             className="shrink-0 px-8 py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-full hover:from-blue-600 hover:to-purple-600 text-gray-200 hover:text-white font-bold transition-all duration-300 flex items-center gap-3"
           >
             <GamepadIcon className="w-5 h-5" />
-            GAMES &amp; APPS
+            {isTr ? "OYUNLAR & UYGULAMALAR" : "GAMES & APPS"}
           </Link>
         </div>
       </section>
@@ -220,7 +274,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <Link to="/gokboru" aria-label="Learn more about Gökbörü">
+              <Link to={isTr ? "/tr/gokboru" : "/gokboru"} aria-label="Learn more about Gökbörü">
                 <img
                   {...responsive(GOKBORU_MEDIA.capsule, "(min-width: 768px) 448px, 100vw")}
                   alt="Gökbörü key art"
@@ -233,18 +287,25 @@ export default function Home() {
             </div>
             <div className="md:w-1/2 text-left">
               <span className="inline-block px-3 py-1 bg-purple-900 text-purple-100 text-xs font-bold rounded-full mb-4">
-                WISHLIST NOW
+                {isTr ? "İSTEK LİSTESİNE EKLE" : "WISHLIST NOW"}
               </span>
               <h2 className="text-4xl font-bold mb-4">Gökbörü</h2>
-              <p className="text-gray-300 text-lg mb-6">Our first major PC title. {gokboruCopy.tagline}</p>
+              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                {isTr ? "İlk büyük PC oyunumuz. " : "Our first major PC title. "}
+                {copy.tagline}
+              </p>
               <div className="flex flex-wrap items-center gap-4">
-                <WishlistButton campaign="home_card" />
-                <BossRevealButton />
+                <WishlistButton
+                  campaign={isTr ? "home_card_tr" : "home_card"}
+                  label={isTr ? "İstek Listesine Ekle" : "Wishlist on Steam"}
+                />
+                <BossRevealButton isTr={isTr} />
                 <Link
-                  to="/gokboru"
+                  to={isTr ? "/tr/gokboru" : "/gokboru"}
                   className="px-6 py-3 text-sm font-bold tracking-wide text-gray-200 hover:text-white underline decoration-gray-500 underline-offset-4 hover:decoration-white"
                 >
-                  Learn more<span className="sr-only"> about Gökbörü</span>
+                  {isTr ? "Daha fazla bilgi al" : "Learn more"}
+                  <span className="sr-only"> about Gökbörü</span>
                 </Link>
               </div>
             </div>
@@ -255,16 +316,28 @@ export default function Home() {
       <section id="about" aria-labelledby="about-title" className="scroll-mt-24 py-20">
         <div className="container mx-auto max-w-4xl px-4">
           <h2 id="about-title" className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
-            About IYI Studios
+            {isTr ? "IYI Studios Hakkında" : "About IYI Studios"}
           </h2>
-          {/* TODO(placeholder): studio introduction */}
           <div className="space-y-4 text-lg leading-relaxed text-gray-300">
-            <p>
-              IYI Studios is an independent game studio from Türkiye. We make games with soul and atmosphere—from
-              pick-up-and-play mobile titles like Galaxy Go, Color Sticks, Rolldrop and Tetrigun to Gökbörü, our
-              first major PC game.
-            </p>
-            <p>We also build small, privacy-friendly apps such as WIMC and WIMB.</p>
+            {isTr ? (
+              <>
+                <p>
+                  IYI Studios, Türkiye merkezli bağımsız bir oyun stüdyosudur. Galaxy Go, Color Sticks, Rolldrop ve Tetrigun
+                  gibi hızlı oynanabilen mobil oyunlardan, ilk büyük PC oyunumuz olan Gökbörü'ye kadar ruhu ve atmosferi olan
+                  yapımlar üretiyoruz.
+                </p>
+                <p>Ayrıca WIMC ve WIMB gibi kullanıcı gizliliğine tam saygılı bağımsız uygulamalar geliştiriyoruz.</p>
+              </>
+            ) : (
+              <>
+                <p>
+                  IYI Studios is an independent game studio from Türkiye. We make games with soul and atmosphere—from
+                  pick-up-and-play mobile titles like Galaxy Go, Color Sticks, Rolldrop and Tetrigun to Gökbörü, our
+                  first major PC game.
+                </p>
+                <p>We also build small, privacy-friendly apps such as WIMC and WIMB.</p>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -272,23 +345,24 @@ export default function Home() {
       <section id="contact" aria-labelledby="contact-title" className="scroll-mt-24 border-t border-gray-800 bg-gray-900 py-20">
         <div className="container mx-auto max-w-4xl px-4">
           <h2 id="contact-title" className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
-            Press &amp; Contact
+            {isTr ? "Basın & İletişim" : "Press & Contact"}
           </h2>
-          <p className="mb-8 max-w-2xl text-lg text-gray-300">
-            For press, partnerships or creator access, get in touch. Our press kit has logos, key art and screenshots.
+          <p className="mb-8 max-w-2xl text-lg text-gray-300 leading-relaxed">
+            {isTr
+              ? "Basın, ortaklıklar veya içerik üretici erişimi için bizimle iletişime geçin. Basın kitimiz logolar, ana görseller ve ekran görüntüleri içerir."
+              : "For press, partnerships or creator access, get in touch. Our press kit has logos, key art and screenshots."}
           </p>
           <div className="flex flex-wrap items-center gap-4">
             {SITE.contactEmail ? (
               <a
                 href={`mailto:${SITE.contactEmail}`}
-                className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-bold text-white hover:from-blue-500 hover:to-purple-500"
+                className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-bold text-white hover:from-blue-500 hover:to-purple-500 transition-all"
               >
                 {SITE.contactEmail}
               </a>
             ) : (
-              // TODO(placeholder): set SITE.contactEmail in src/config/site.ts
               <span className="rounded-full border border-gray-700 px-6 py-3 text-sm font-bold text-gray-400">
-                Contact email — coming soon
+                {isTr ? "İletişim e-postası — yakında" : "Contact email — coming soon"}
               </span>
             )}
             {(SITE.pressKitUrl ?? GOKBORU_CONFIG.pressKitUrl) ? (
@@ -296,13 +370,13 @@ export default function Home() {
                 href={(SITE.pressKitUrl ?? GOKBORU_CONFIG.pressKitUrl)!}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-blue-500/40 bg-blue-600/20 px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
+                className="rounded-full border border-blue-500/40 bg-blue-600/20 px-6 py-3 text-sm font-bold text-white hover:bg-blue-600 transition-all"
               >
-                Press kit
+                {isTr ? "Basın kiti" : "Press kit"}
               </a>
             ) : (
               <span className="rounded-full border border-gray-700 px-6 py-3 text-sm font-bold text-gray-400">
-                Press kit — coming soon
+                {isTr ? "Basın kiti — yakında" : "Press kit — coming soon"}
               </span>
             )}
           </div>

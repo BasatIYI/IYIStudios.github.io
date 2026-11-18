@@ -3,27 +3,27 @@
 export const gokboruCopy = {
   name: "Gökbörü",
   tagline:
-    "Draw lines, claim territory and purge Erlik's demons in this 3D territory-capture action roguelite rooted in Turkic mythology. Master divine Boons, unleash arena power-ups, survive 10 mythic bosses and chase high scores — every open line is a gamble.",
+    "Draw a line, close the loop, crush every demon caught inside. A 3D arcade action roguelite born from Turkic mythology — every open line is a gamble. Power up with 18 divine Boons, unlock 6 synergies and chase the high score.",
   features: [
     {
       title: "Draw the Line, Claim the Land",
       body: "Leave safe ground, sweep a line across the 3D arena and close it back onto your territory to cleanse everything you enclose. Purge at least 90% of the arena to triumph.",
     },
     {
-      title: "Divine Boons (Kut System)",
-      body: "Shape your build with divine Boons that alter your movement and survival: Dash to safety, Deflect ignited trail shocks, and freeze time with Blizzard Mastery.",
+      title: "18 Divine Boons & 6 Duo Synergies",
+      body: "Shape distinct builds each run with elemental synergies like Celestial Wolf, Iron Fortress, Solar Conquest, Sky Archer's Wrath, Eternal Ayaz and Storm of the Steppe. Reroll fates with Umay's blessing.",
     },
     {
-      title: "High-Risk, High-Reward Gambling",
-      body: "Small captures are steady; giant sweeps skyrocket your score and combo multipliers, but open lines ignite when touched by Erlik's minions.",
+      title: "Chapter 1: Haunted Trade Road & Peri Kızı",
+      body: "Venture into the sun-scorched oasis sanctuary. Morph into the Winged Wolf with custom celestial trails, deflect flying fairy blades, dodge deadly line-lunges, and unleash the cleansing fountain wave.",
+    },
+    {
+      title: "Shrine of Kut (8 Permanent Upgrades)",
+      body: "Spend sacred Kut gathered across runs at the ancient stone Shrine of Kut to unlock 8 permanent upgrades, and analyze past runs in the Chronicle.",
     },
     {
       title: "10 Mythic Boss Battles",
       body: "Confront legendary figures from Turkic mythology—each testing a specific flaw: Peri Kılıcı, Tepegöz, Alkarısı, Karabasan, Yel Büke, Abra & Yutpa, Kara Şaman, Erlik Kızları, Temir Han, and the Lord of the Underworld, Erlik Han.",
-    },
-    {
-      title: "Tactical Arena Power-Ups",
-      body: "Enclose battlefield Power Boxes to claim Speed Boosts (Wolf Spirit), Freeze (Breath of Ülgen), Sky Arrows, Kızagan's Lance, Minion Clears and Extra Lives.",
     },
     {
       title: "Cinematic Epics in Dede Korkut's Spirit",
@@ -51,8 +51,65 @@ export const gokboruCopy = {
         values: ["NVIDIA GTX 1050 Ti 4 GB / AMD RX 570 4 GB", "NVIDIA GTX 1660 Super / AMD RX 5600 XT (6 GB)"],
       },
       { label: "DirectX", values: ["Version 11", "Version 12"] },
-      { label: "Storage", values: ["3 GB available space", "3 GB available space (SSD)"] },
+      { label: "Storage", values: ["4 GB available space", "4 GB available space (SSD)"] },
       { label: "Notes", values: ["1080p, Low/Balanced quality", "1080p, High quality, 60 FPS"] },
+    ],
+  },
+};
+
+export const gokboruCopyTr = {
+  name: "Gökbörü",
+  tagline:
+    "Çizgi çek, alanı kapat, içinde kalan iblisleri yok et. Türk mitolojisinden doğan bu 3D arcade aksiyon roguelite'ta her açık çizgi bir kumar: 18 ilahi Kut'la güçlen, 6 efsanevi sinerjiyi aç ve yüksek skoru kovala.",
+  features: [
+    {
+      title: "Çizgi Çek, Alanı Kapat",
+      body: "Güvenli bölgeden çık, 3D arenada çizgini çek ve alanını kapatıp mühürlediğin her şeyi arındır. Zafer için arenanın en az %90'ını temizle.",
+    },
+    {
+      title: "18 İlahi Kut & 6 Duo Sinerji",
+      body: "Celestial Wolf, Iron Fortress, Solar Conquest, Sky Archer's Wrath, Eternal Ayaz ve Storm of the Steppe gibi ikili sinerjilerle her koşuda farklı bir build kur. Umay'ın lütfuyla kaderini yeniden çek.",
+    },
+    {
+      title: "Bölüm-1: Perili Ticaret Yolu & Peri Kızı",
+      body: "Güneşin kavurduğu vaha mabedine adım at. Göksel izler bırakan Kanatlı Kurt formuna dönüş, uçan peri kılıçlarını Deflect ile savuştur, ölümcül atılmalardan kaç ve arındırıcı şadırvan dalgasını başlat.",
+    },
+    {
+      title: "Kut Tapınağı (8 Kalıcı Güçlendirme)",
+      body: "Koşulardan topladığın kutsal Kut cevherlerini kadim taş tapınakta harcayarak 8 kalıcı yeteneği yükselt ve Chronicle ile geçmiş koşularını analiz et.",
+    },
+    {
+      title: "10 Efsanevi Boss Savaşı",
+      body: "Türk mitolojisinin kadim figürleriyle yüzleş: Peri Kılıcı, Tepegöz, Alkarısı, Karabasan, Yel Büke, Abra & Yutpa, Kara Şaman, Erlik Kızları, Temir Han ve Yeraltı Hükümdarı Erlik Han.",
+    },
+    {
+      title: "Dede Korkut Ruhunda Sinematik Destan",
+      body: "Kızagan ve Baybörü olarak savaş, gök elçisi Bürküt'ün rehberliğinde top-down arenalarda ilerle; dilediğin an Hikâye Galerisi'nden sinematikleri yeniden izle.",
+    },
+  ],
+  world: {
+    heading: "Türk Mitolojisinden Doğan Bir Dünya",
+    paragraphs: [
+      "Yeraltı Hükümdarı Erlik Han yeryüzüne sızdı. Gölge iblisleri Körmösler toprağı kirleterek temas ettikleri her şeyi yozlaştırıyor.",
+      "Prolog destanının kahramanı Kızagan ve Gökbörü ordusunun komutanı Baybörü olarak direniyorsun. Gök Tanrı Ülgen'in elçisi Bürküt sana perili ticaret yollarında, harabe şehirlerde, Yeraltı Kapısı'nda ve Erlik'in taht salonunda rehberlik ediyor.",
+    ],
+  },
+  systemRequirements: {
+    columns: ["Minimum", "Önerilen"] as const,
+    rows: [
+      { label: "İşletim Sistemi", values: ["Windows 10 64-bit", "Windows 10/11 64-bit"] },
+      {
+        label: "İşlemci",
+        values: ["Intel Core i5-6500 / AMD Ryzen 3 1300X (4 çekirdek)", "Intel Core i5-9400 / AMD Ryzen 5 3600"],
+      },
+      { label: "Bellek", values: ["8 GB RAM", "16 GB RAM"] },
+      {
+        label: "Ekran Kartı",
+        values: ["NVIDIA GTX 1050 Ti 4 GB / AMD RX 570 4 GB", "NVIDIA GTX 1660 Super / AMD RX 5600 XT (6 GB)"],
+      },
+      { label: "DirectX", values: ["Sürüm 11", "Sürüm 12"] },
+      { label: "Depolama", values: ["4 GB boş alan", "4 GB boş alan (SSD)"] },
+      { label: "Not", values: ["1080p, Düşük/Dengeli kalite", "1080p, Yüksek kalite, 60 FPS"] },
     ],
   },
 };

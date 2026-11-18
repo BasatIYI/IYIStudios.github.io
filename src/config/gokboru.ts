@@ -10,11 +10,26 @@ export const GOKBORU = {
   visualUpdateYoutubeId: "JaGRAbsxZEY" as string | null,
   discordUrl: "https://discord.gg/wbyRSjavpX" as string | null,
   pressKitUrl: "/presskit/gokboru-presskit.zip",
-  releaseWindow: "TBA", // TODO(placeholder): e.g. "2027"
+  releaseWindow: "Free demo: coming soon · Full release: March 2027",
+  releaseWindowTr: "Ücretsiz demo: yakında · Tam sürüm: Mart 2027",
   utm: { source: "iyistudios", medium: "web" },
 };
 
-export type SteamCampaign = "hero" | "announcement_bar" | "gokboru_page" | "home_card" | "games_page";
+export type SteamCampaign =
+  | "hero"
+  | "hero_tr"
+  | "announcement_bar"
+  | "announcement_bar_tr"
+  | "demo_bar"
+  | "demo_bar_tr"
+  | "next_fest"
+  | "launched"
+  | "gokboru_page"
+  | "gokboru_page_tr"
+  | "home_card"
+  | "home_card_tr"
+  | "home_steam_icon"
+  | "games_page";
 
 /** Store page URL, derived from the App ID when no explicit URL is set. */
 export function steamStoreUrl(): string | null {
@@ -45,17 +60,46 @@ export function youtubeEmbedUrl(autoplay = true, videoId: string | null = GOKBOR
   return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params}`;
 }
 
+// Ready banner states (W-16): change mode to instantly switch on demo day, Next Fest, or launch
+export type AnnouncementMode = "wishlist" | "demo_live" | "next_fest" | "launched";
+export const ANNOUNCEMENT_MODE: AnnouncementMode = "wishlist";
+
+export const ANNOUNCEMENT_CONFIG: Record<
+  AnnouncementMode,
+  {
+    en: { text: string; action: string; campaign: SteamCampaign };
+    tr: { text: string; action: string; campaign: SteamCampaign };
+  }
+> = {
+  wishlist: {
+    en: { text: "Gökbörü is coming to Steam — ", action: "Wishlist now", campaign: "announcement_bar" },
+    tr: { text: "Gökbörü Steam'e Geliyor — ", action: "İstek Listesine Ekle", campaign: "announcement_bar_tr" },
+  },
+  demo_live: {
+    en: { text: "Free demo out now on Steam — ", action: "Play the Prologue", campaign: "demo_bar" },
+    tr: { text: "Ücretsiz Prolog Demosu Yayında — ", action: "Hemen Oyna", campaign: "demo_bar_tr" },
+  },
+  next_fest: {
+    en: { text: "Play Gökbörü at Steam Next Fest — ", action: "Free demo live now", campaign: "next_fest" },
+    tr: { text: "Gökbörü Steam Next Fest'te — ", action: "Ücretsiz Demoyu Şimdi Oyna", campaign: "next_fest" },
+  },
+  launched: {
+    en: { text: "Gökbörü is out now on Steam! ", action: "Play Now", campaign: "launched" },
+    tr: { text: "Gökbörü Şimdi Steam'de Yayında! ", action: "Hemen Oyna", campaign: "launched" },
+  },
+};
+
 // Fixed file names: replace the placeholder files with real ones under the same name.
 const dir = "/media/games/gokboru";
 export const GOKBORU_MEDIA = {
   keyArt: `${dir}/key-art.webp`,
   logo: `${dir}/logo.png`,
-  capsule: `${dir}/capsule-main.webp`, // TODO(placeholder): 1232×706
-  trailerPoster: `${dir}/trailer-poster.webp`, // TODO(placeholder): 1920×1080
+  capsule: `${dir}/capsule-main.webp`, // 1232×706
+  trailerPoster: `${dir}/trailer-poster.webp`, // 1920×1080
   bossRevealPoster: `${dir}/boss-reveal-poster.webp`,
   visualUpdatePoster: `${dir}/visual-update-poster.webp`,
-  heroLoop: `${dir}/hero-loop.mp4`, // TODO(placeholder): optional, 1920×1080, short, muted
-  ogImage: `${dir}/og-image.png`, // TODO(placeholder): 1200×630 PNG
+  heroLoop: `${dir}/hero-loop.mp4`, // 1920×1080, short, muted
+  ogImage: `${dir}/og-image.png`, // 1200×630 PNG
   screenshots: Array.from({ length: 10 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
 };
 
