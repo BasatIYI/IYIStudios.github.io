@@ -51,7 +51,7 @@ export const gokboruCopy = {
         values: ["NVIDIA GTX 1050 Ti 4 GB / AMD RX 570 4 GB", "NVIDIA GTX 1660 Super / AMD RX 5600 XT (6 GB)"],
       },
       { label: "DirectX", values: ["Version 11", "Version 12"] },
-      { label: "Storage", values: ["4 GB available space", "4 GB available space (SSD)"] },
+      { label: "Storage", values: ["3 GB available space", "3 GB available space (SSD)"] },
       { label: "Notes", values: ["1080p, Low/Balanced quality", "1080p, High quality, 60 FPS"] },
     ],
   },
@@ -97,19 +97,19 @@ export const gokboruCopyTr = {
   systemRequirements: {
     columns: ["Minimum", "Önerilen"] as const,
     rows: [
-      { label: "İşletim Sistemi", values: ["Windows 10 64-bit", "Windows 10/11 64-bit"] },
+      { label: "İşletim sistemi", values: ["Windows 10 64-bit", "Windows 10/11 64-bit"] },
       {
         label: "İşlemci",
         values: ["Intel Core i5-6500 / AMD Ryzen 3 1300X (4 çekirdek)", "Intel Core i5-9400 / AMD Ryzen 5 3600"],
       },
       { label: "Bellek", values: ["8 GB RAM", "16 GB RAM"] },
       {
-        label: "Ekran Kartı",
+        label: "Ekran kartı",
         values: ["NVIDIA GTX 1050 Ti 4 GB / AMD RX 570 4 GB", "NVIDIA GTX 1660 Super / AMD RX 5600 XT (6 GB)"],
       },
       { label: "DirectX", values: ["Sürüm 11", "Sürüm 12"] },
-      { label: "Depolama", values: ["4 GB boş alan", "4 GB boş alan (SSD)"] },
-      { label: "Not", values: ["1080p, Düşük/Dengeli kalite", "1080p, Yüksek kalite, 60 FPS"] },
+      { label: "Depolama", values: ["3 GB boş alan", "3 GB boş alan (SSD)"] },
+      { label: "Not", values: ["1080p, Low/Balanced kalite", "1080p, High kalite, 60 FPS"] },
     ],
   },
 };
