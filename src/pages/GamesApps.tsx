@@ -3,11 +3,19 @@ import { Link } from "react-router-dom";
 import type { Product } from "../data/products";
 import WishlistButton from "../components/WishlistButton";
 import { GOKBORU_MEDIA } from "../config/gokboru";
-import { gokboruCopy } from "../data/gokboru";
+import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { PAGE_META, usePageMeta } from "../seo";
 import { responsive } from "../images";
 
-function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { product: Product; hoverClass?: string }) {
+function ProductCard({
+  product,
+  hoverClass = "hover:animate-wave-glow",
+  isTr = false,
+}: {
+  product: Product;
+  hoverClass?: string;
+  isTr?: boolean;
+}) {
   const [index, setIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
 
@@ -88,14 +96,14 @@ function ProductCard({ product, hoverClass = "hover:animate-wave-glow" }: { prod
             href={isGame ? product.playLink : product.installLink}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${isGame ? "Play" : "Install"} ${product.name}`}
+            aria-label={`${isGame ? (isTr ? "Oyna" : "Play") : isTr ? "Yükle" : "Install"} ${product.name}`}
             className={`w-full py-2 text-white text-[11px] font-black rounded-md transition-all text-center uppercase tracking-widest shadow-lg active:scale-95 ${
               isGame
                 ? "bg-blue-600 hover:bg-blue-500 shadow-blue-900/20"
                 : "bg-emerald-700 hover:bg-emerald-600 shadow-emerald-900/20"
             }`}
           >
-            {isGame ? "PLAY NOW" : "INSTALL NOW"}
+            {isGame ? (isTr ? "HEMEN OYNA" : "PLAY NOW") : isTr ? "HEMEN YÜKLE" : "INSTALL NOW"}
           </a>
         </div>
       </div>
@@ -140,10 +148,13 @@ function SectionTitle({ label, accent, bar }: { label: string; accent: string; b
   );
 }
 
-function GokboruFeature() {
+function GokboruFeature({ isTr = false }: { isTr?: boolean }) {
+  const copy = isTr ? gokboruCopyTr : gokboruCopy;
+  const gokboruPath = isTr ? "/tr/gokboru" : "/gokboru";
+
   return (
     <article className="group mx-auto flex max-w-7xl flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-xl transition duration-300 hover:animate-wave-glow-purple md:flex-row">
-      <Link to="/gokboru" className="block md:w-3/5" tabIndex={-1} aria-hidden="true">
+      <Link to={gokboruPath} className="block md:w-3/5" tabIndex={-1} aria-hidden="true">
         <img
           {...responsive(GOKBORU_MEDIA.capsule, "(min-width: 768px) 60vw, 100vw")}
           alt=""
@@ -158,22 +169,26 @@ function GokboruFeature() {
             PC
           </span>
           <span className="rounded-full bg-blue-600/80 px-2 py-0.5 text-[10px] font-black tracking-widest text-blue-100 uppercase">
-            Wishlist now
+            {isTr ? "İstek Listesine Ekle" : "Wishlist now"}
           </span>
         </div>
         <h2 className="text-3xl font-black tracking-tighter text-white uppercase md:text-4xl">
-          <Link to="/gokboru" className="hover:text-blue-400 transition-colors">
-            {gokboruCopy.name}
+          <Link to={gokboruPath} className="hover:text-blue-400 transition-colors">
+            {copy.name}
           </Link>
         </h2>
-        <p className="text-gray-300">{gokboruCopy.tagline}</p>
+        <p className="text-gray-300">{copy.tagline}</p>
         <div className="flex flex-wrap items-center gap-4">
-          <WishlistButton campaign="games_page" />
+          <WishlistButton
+            campaign={isTr ? "games_page_tr" : "games_page"}
+            label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
+          />
           <Link
-            to="/gokboru"
+            to={gokboruPath}
             className="text-sm font-bold tracking-wide text-gray-200 underline decoration-gray-500 underline-offset-4 hover:text-white hover:decoration-white"
           >
-            Learn more<span className="sr-only"> about Gökbörü</span>
+            {isTr ? "Daha fazla bilgi al" : "Learn more"}
+            <span className="sr-only"> about Gökbörü</span>
           </Link>
         </div>
       </div>
@@ -181,17 +196,18 @@ function GokboruFeature() {
   );
 }
 
-export default function GamesApps({ products }: { products: Product[] }) {
-  usePageMeta(PAGE_META.games);
+export default function GamesApps({ products, lang = "en" }: { products: Product[]; lang?: "en" | "tr" }) {
+  const isTr = lang === "tr";
+  usePageMeta(isTr ? PAGE_META.gamesTr : PAGE_META.games);
   const games = products.filter((p) => p.type === "Game");
   const apps = products.filter((p) => p.type === "App");
 
   return (
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-4xl md:text-5xl font-bold mb-10 text-center tracking-tight">
-        Our{" "}
+        {isTr ? "Oyunlarımız & " : "Our "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-          Games &amp; Apps
+          {isTr ? "Uygulamalarımız" : "Games & Apps"}
         </span>
       </h1>
 
@@ -201,19 +217,19 @@ export default function GamesApps({ products }: { products: Product[] }) {
           accent="to-purple-500"
           bar="from-purple-600 to-blue-600 shadow-[0_0_15px_rgba(147,51,234,0.5)]"
         />
-        <GokboruFeature />
+        <GokboruFeature isTr={isTr} />
       </div>
 
       <div className="mb-20">
         <SectionTitle
-          label="GAMES"
+          label={isTr ? "OYUNLAR" : "GAMES"}
           accent="to-blue-500"
           bar="from-blue-600 to-purple-600 shadow-[0_0_15px_rgba(37,99,235,0.5)]"
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center justify-center max-w-7xl mx-auto">
           {games.map((p) => (
             <div key={p.id} className="w-full max-w-[500px]">
-              <ProductCard product={p} />
+              <ProductCard product={p} isTr={isTr} />
             </div>
           ))}
         </div>
@@ -221,14 +237,14 @@ export default function GamesApps({ products }: { products: Product[] }) {
 
       <div className="mb-10 content-left">
         <SectionTitle
-          label="APPS"
+          label={isTr ? "UYGULAMALAR" : "APPS"}
           accent="to-green-500"
           bar="from-emerald-600 to-green-600 shadow-[0_0_15px_rgba(16,185,129,0.5)]"
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center justify-center max-w-7xl mx-auto">
           {apps.map((p) => (
             <div key={p.id} className="w-full max-w-[500px]">
-              <ProductCard product={p} hoverClass="hover:animate-wave-glow-green" />
+              <ProductCard product={p} hoverClass="hover:animate-wave-glow-green" isTr={isTr} />
             </div>
           ))}
         </div>

@@ -1,17 +1,23 @@
 // Single source of truth for every external Gökbörü value.
-// Fill in the TODO fields below; no other code change is needed.
-// See PLACEHOLDERS.md for the full checklist.
+// Numeric facts and launch/demo status are read from marketing-facts.json.
+import marketingFacts from "../../marketing-facts.json";
+
+export const MARKETING_FACTS = marketingFacts;
 
 export const GOKBORU = {
-  steamAppId: "4886790",
-  steamStoreUrl: "https://store.steampowered.com/app/4886790/Gokboru/",
+  steamAppId: String(marketingFacts.store.appId),
+  steamStoreUrl: `https://store.steampowered.com/app/${marketingFacts.store.appId}/Gokboru/`,
   trailerYoutubeId: "r_IZLDmio_w" as string | null,
   bossRevealYoutubeId: "swHfokx1yrA" as string | null,
   visualUpdateYoutubeId: "JaGRAbsxZEY" as string | null,
   discordUrl: "https://discord.gg/wbyRSjavpX" as string | null,
   pressKitUrl: "/presskit/gokboru-presskit.zip",
-  releaseWindow: "Full release: March 2027",
-  releaseWindowTr: "Tam sürüm: Mart 2027",
+  releaseWindow: marketingFacts.launch.earlyAccess
+    ? `Early Access: ${marketingFacts.launch.date}`
+    : `Full release: ${marketingFacts.launch.date}`,
+  releaseWindowTr: marketingFacts.launch.earlyAccess
+    ? `Erken Erişim: ${marketingFacts.launch.dateTr}`
+    : `Tam sürüm: ${marketingFacts.launch.dateTr}`,
   utm: { source: "iyistudios", medium: "web" },
 };
 
@@ -29,7 +35,9 @@ export type SteamCampaign =
   | "home_card"
   | "home_card_tr"
   | "home_steam_icon"
-  | "games_page";
+  | "games_page"
+  | "games_page_tr"
+  | "bio";
 
 /** Store page URL, derived from the App ID when no explicit URL is set. */
 export function steamStoreUrl(): string | null {
@@ -39,12 +47,16 @@ export function steamStoreUrl(): string | null {
 }
 
 /** Every wishlist link on the site goes through here so UTM values stay consistent. */
-export function steamLink(campaign: SteamCampaign): string | null {
+export function steamLink(
+  campaign: SteamCampaign,
+  source: string = GOKBORU.utm.source,
+  medium: string = GOKBORU.utm.medium,
+): string | null {
   const base = steamStoreUrl();
   if (!base) return null;
   const url = new URL(base);
-  url.searchParams.set("utm_source", GOKBORU.utm.source);
-  url.searchParams.set("utm_medium", GOKBORU.utm.medium);
+  url.searchParams.set("utm_source", source);
+  url.searchParams.set("utm_medium", medium);
   url.searchParams.set("utm_campaign", campaign);
   return url.toString();
 }
@@ -60,9 +72,13 @@ export function youtubeEmbedUrl(autoplay = true, videoId: string | null = GOKBOR
   return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params}`;
 }
 
-// Ready banner states (W-16): change mode to instantly switch on demo day, Next Fest, or launch
-export type AnnouncementMode = "wishlist" | "demo_live" | "next_fest" | "launched";
-export const ANNOUNCEMENT_MODE: AnnouncementMode = "wishlist";
+// Single-flag 4-state mode for Announcement Bar and Hero CTAs (W-13)
+export type AnnouncementMode = "WISHLIST_ONLY" | "DEMO_LIVE" | "NEXT_FEST" | "LAUNCHED";
+export const ANNOUNCEMENT_MODE: AnnouncementMode = (
+  marketingFacts.demo.live ? "DEMO_LIVE" : "WISHLIST_ONLY"
+) as AnnouncementMode;
+export const IS_DEMO_LIVE =
+  Boolean(marketingFacts.demo.live) && (ANNOUNCEMENT_MODE === "DEMO_LIVE" || ANNOUNCEMENT_MODE === "NEXT_FEST");
 
 export const ANNOUNCEMENT_CONFIG: Record<
   AnnouncementMode,
@@ -71,19 +87,19 @@ export const ANNOUNCEMENT_CONFIG: Record<
     tr: { text: string; action: string; campaign: SteamCampaign };
   }
 > = {
-  wishlist: {
+  WISHLIST_ONLY: {
     en: { text: "Gökbörü is coming to Steam — ", action: "Wishlist now", campaign: "announcement_bar" },
     tr: { text: "Gökbörü Steam'e Geliyor — ", action: "İstek Listesine Ekle", campaign: "announcement_bar_tr" },
   },
-  demo_live: {
-    en: { text: "Free demo out now on Steam — ", action: "Play the Prologue", campaign: "demo_bar" },
-    tr: { text: "Ücretsiz Prolog Demosu Yayında — ", action: "Hemen Oyna", campaign: "demo_bar_tr" },
+  DEMO_LIVE: {
+    en: { text: "Free demo out now on Steam — ", action: "Play Free Demo", campaign: "demo_bar" },
+    tr: { text: "Ücretsiz Prolog Demosu Yayında — ", action: "Ücretsiz Demoyu Oyna", campaign: "demo_bar_tr" },
   },
-  next_fest: {
-    en: { text: "Play Gökbörü at Steam Next Fest — ", action: "Free demo live now", campaign: "next_fest" },
-    tr: { text: "Gökbörü Steam Next Fest'te — ", action: "Ücretsiz Demoyu Şimdi Oyna", campaign: "next_fest" },
+  NEXT_FEST: {
+    en: { text: "Play Gökbörü at Steam Next Fest — ", action: "Play Free Demo", campaign: "next_fest" },
+    tr: { text: "Gökbörü Steam Next Fest'te — ", action: "Ücretsiz Demoyu Oyna", campaign: "next_fest" },
   },
-  launched: {
+  LAUNCHED: {
     en: { text: "Gökbörü is out now on Steam! ", action: "Play Now", campaign: "launched" },
     tr: { text: "Gökbörü Şimdi Steam'de Yayında! ", action: "Hemen Oyna", campaign: "launched" },
   },

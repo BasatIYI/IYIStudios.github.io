@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { GOKBORU, GOKBORU_MEDIA, steamStoreUrl } from "../config/gokboru";
+import { Link } from "react-router-dom";
+import { GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, steamLink, steamStoreUrl } from "../config/gokboru";
 import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { socialLinks } from "../data/social";
 import { PAGE_META, SITE_URL, absoluteUrl, usePageMeta } from "../seo";
@@ -73,6 +74,7 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
   const isTr = lang === "tr";
   usePageMeta(isTr ? PAGE_META.gokboruTr : PAGE_META.gokboru);
   const copy = isTr ? gokboruCopyTr : gokboruCopy;
+  const demoHref = steamLink(isTr ? "demo_bar_tr" : "demo_bar");
 
   return (
     <div className="flex flex-col">
@@ -108,32 +110,45 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
             <WishlistButton
               campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
               size="lg"
-              label={
-                isTr
-                  ? "Steam'de İstek Listesine Ekle & Ücretsiz Demoyu Oyna"
-                  : "Wishlist & Play Free Demo on Steam"
-              }
+              label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
             />
-            {GOKBORU.discordUrl && (
+            {IS_DEMO_LIVE && demoHref && (
               <a
-                href={GOKBORU.discordUrl}
+                href={demoHref}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-6 py-4 text-base font-bold text-purple-200 backdrop-blur transition-all duration-300 hover:border-purple-400 hover:bg-purple-900/60 hover:text-white hover:scale-105"
+                rel="noopener"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:scale-105"
               >
-                <span>{isTr ? "Kapalı Playtest'e Katıl" : "Join Closed Playtest"}</span>
-                <span className="text-xs font-normal text-purple-300/80">({isTr ? "Discord" : "Discord"})</span>
+                {isTr ? "Ücretsiz Demoyu Oyna" : "Play Free Demo"}
               </a>
             )}
           </div>
-          <p className="mt-4 text-sm text-gray-300 font-medium">
-            {isTr ? GOKBORU.releaseWindowTr : GOKBORU.releaseWindow}
-          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-300 font-medium">
+            <span>
+              {IS_DEMO_LIVE
+                ? isTr
+                  ? `Ücretsiz Prolog Demosu Yayında · ${GOKBORU.releaseWindowTr}`
+                  : `Free Prologue demo live now · ${GOKBORU.releaseWindow}`
+                : isTr
+                  ? `Ücretsiz demo: çok yakında · ${GOKBORU.releaseWindowTr}`
+                  : `Free demo: coming soon · ${GOKBORU.releaseWindow}`}
+            </span>
+            <span aria-hidden="true" className="text-gray-600">•</span>
+            <a
+              href="#trailer"
+              className="inline-flex items-center gap-1.5 font-bold text-gray-200 underline decoration-gray-500 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
+            >
+              {isTr ? "Fragmanı İzle" : "Watch Trailer"}
+            </a>
+          </div>
         </div>
       </section>
 
       <Section id="trailer" title={isTr ? "Fragman" : "Trailer"}>
-        <TrailerFacade title={isTr ? "Gökbörü Fragmanı" : "Gökbörü Trailer"} />
+        <TrailerFacade
+          posterSrc={isTr ? GOKBORU_MEDIA.screenshots[12] : GOKBORU_MEDIA.trailerPoster}
+          title={isTr ? "Gökbörü Fragmanı" : "Gökbörü Trailer"}
+        />
       </Section>
 
       <Section id="features" title={isTr ? "Özellikler" : "Features"}>
@@ -213,7 +228,7 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
           </p>
           <TrailerFacade
             videoId={GOKBORU.visualUpdateYoutubeId}
-            posterSrc={GOKBORU_MEDIA.visualUpdatePoster}
+            posterSrc={isTr ? GOKBORU_MEDIA.screenshots[10] : GOKBORU_MEDIA.visualUpdatePoster}
             title={isTr ? "Gökbörü — Görsel Güncelleme Fragmanı" : "Gökbörü — Visual Update Trailer"}
           />
         </Section>
@@ -223,29 +238,24 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
         <Gallery images={GOKBORU_MEDIA.screenshots} name={copy.name} />
       </Section>
 
-      <Section id="steam" title={isTr ? "Steam'de İstek Listesine Ekle & Demoyu Oyna" : "Wishlist & Play Demo on Steam"}>
+      <Section
+        id="steam"
+        title={
+          IS_DEMO_LIVE
+            ? isTr
+              ? "Steam'de İstek Listesine Ekle & Demoyu Oyna"
+              : "Wishlist & Play Demo on Steam"
+            : isTr
+              ? "Steam'de İstek Listesine Ekle"
+              : "Wishlist on Steam"
+        }
+      >
         <div className="max-w-2xl space-y-6">
           <SteamWidget />
-          <div className="flex flex-wrap items-center gap-4">
-            <WishlistButton
-              campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
-              label={
-                isTr
-                  ? "Steam'de İstek Listesine Ekle & Ücretsiz Demoyu Oyna"
-                  : "Wishlist & Play Free Demo on Steam"
-              }
-            />
-            {GOKBORU.discordUrl && (
-              <a
-                href={GOKBORU.discordUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-6 py-3 text-sm font-bold text-purple-200 backdrop-blur transition-all duration-300 hover:border-purple-400 hover:bg-purple-900/60 hover:text-white"
-              >
-                <span>{isTr ? "Kapalı Playtest'e Katıl" : "Join Closed Playtest"}</span>
-              </a>
-            )}
-          </div>
+          <WishlistButton
+            campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
+            label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
+          />
         </div>
       </Section>
 
@@ -283,16 +293,16 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
         </div>
       </Section>
 
-      <Section id="community" title={isTr ? "Topluluk" : "Community"}>
+      <Section id="community" title={isTr ? "Topluluk & Kapalı Playtest" : "Community & Closed Playtest"}>
         <p className="mb-6 max-w-2xl text-gray-300 leading-relaxed">
           {isTr
-            ? "Geliştirme sürecini takip edin, teorilerinizi paylaşın ve oyun testlerinden ilk siz haberdar olun."
-            : "Follow development, share your theories and be the first to hear about playtests."}
+            ? "Geliştirme sürecini takip edin, teorilerinizi paylaşın ve Discord üzerinden davet usulü yürütülen kapalı playtest'lere katılın."
+            : "Follow development, share your theories and join our invite-only closed playtests on Discord."}
         </p>
         <div className="flex flex-wrap items-center gap-4">
           <OptionalLink
             href={GOKBORU.discordUrl}
-            label={isTr ? "Discord'a Katıl" : "Join our Discord"}
+            label={isTr ? "Kapalı Playtest'e Katıl (Discord)" : "Join Closed Playtest (Discord)"}
             pending={isTr ? "Discord — yakında" : "Discord — coming soon"}
           />
           {socialLinks
@@ -312,17 +322,31 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
         </div>
       </Section>
 
-      <Section id="press" title={isTr ? "Basın" : "Press"}>
+      <Section id="press" title={isTr ? "Basın & İçerik Üreticileri" : "Press & Creators"}>
         <p className="mb-6 max-w-2xl text-gray-300 leading-relaxed">
           {isTr
-            ? "Basın mensupları ve yayıncılar için logolar, ana görseller, ekran görüntüleri ve bilgi föyü."
-            : "Logos, key art, screenshots and fact sheet for press and creators."}
+            ? "Basın mensupları ve yayıncılar için logolar, ana görseller, ekran görüntüleri, bilgi föyü ve inceleme anahtarı talebi."
+            : "Logos, key art, screenshots, fact sheet, and review key requests for press and content creators."}
         </p>
-        <OptionalLink
-          href={GOKBORU.pressKitUrl}
-          label={isTr ? "Basın Kitini İndir" : "Download press kit"}
-          pending={isTr ? "Basın kiti — yakında" : "Press kit — coming soon"}
-        />
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
+            to={isTr ? "/tr/press" : "/press"}
+            className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-600/20 px-6 py-3 text-sm font-bold tracking-wide text-white transition-colors hover:bg-blue-600"
+          >
+            {isTr ? "Basın Kiti Sayfası" : "Open Press Kit"}
+          </Link>
+          <Link
+            to={isTr ? "/tr/creators" : "/creators"}
+            className="inline-flex items-center gap-2 rounded-full border border-purple-500/40 bg-purple-600/20 px-6 py-3 text-sm font-bold tracking-wide text-white transition-colors hover:bg-purple-600"
+          >
+            {isTr ? "İçerik Üreticisi Paketi" : "Creators Kit"}
+          </Link>
+          <OptionalLink
+            href={GOKBORU.pressKitUrl}
+            label={isTr ? "ZIP İndir" : "Download ZIP"}
+            pending={isTr ? "Basın kiti — yakında" : "Press kit — coming soon"}
+          />
+        </div>
       </Section>
     </div>
   );

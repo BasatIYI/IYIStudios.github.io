@@ -1,0 +1,22 @@
+{
+  "demo": {
+    "live": false
+  },
+  "launch": {
+    "date": "March 2027",
+    "dateTr": "Mart 2027",
+    "earlyAccess": false,
+    "price": "TBA",
+    "priceTr": "Yakında Açıklanacak",
+    "boons": 18,
+    "synergies": 6,
+    "permanentUpgrades": 8,
+    "bosses": 10
+  },
+  "tech": {
+    "storageGB": 4
+  },
+  "store": {
+    "appId": 4886790
+  }
+}

@@ -16,7 +16,7 @@ export default function Navbar() {
   const links = isTr
     ? [
         { to: "/tr/gokboru", label: "Gökbörü" },
-        { to: "/games", label: "Oyunlar" },
+        { to: "/tr/games", label: "Oyunlar" },
         { to: "/tr#about", label: "Hakkımızda" },
         { to: "/tr#contact", label: "Basın / İletişim" },
       ]
@@ -28,16 +28,17 @@ export default function Navbar() {
       ];
 
   // Language switch targets
-  const targetTr = location.pathname.startsWith("/tr")
+  const normalizedPath = location.pathname === "/" ? "" : location.pathname.replace(/\/+$/, "");
+  const targetTr = isTr
     ? location.pathname
-    : location.pathname === "/gokboru"
-    ? "/tr/gokboru"
-    : "/tr";
-  const targetEn = location.pathname === "/tr/gokboru"
-    ? "/gokboru"
-    : location.pathname.startsWith("/tr")
-    ? "/"
-    : location.pathname;
+    : normalizedPath === ""
+      ? "/tr"
+      : `/tr${normalizedPath}`;
+  const targetEn = !isTr
+    ? location.pathname
+    : normalizedPath === "/tr"
+      ? "/"
+      : normalizedPath.replace(/^\/tr/, "") || "/";
 
   // Close the mobile menu after navigating or on Esc.
   useEffect(() => {
@@ -77,7 +78,7 @@ export default function Navbar() {
           <ul className="flex items-center gap-2">
             {links.map(({ to, label }) => (
               <li key={to}>
-                {to === "/games" ? (
+                {to === "/games" || to === "/tr/games" ? (
                   <NavLink
                     to={to}
                     className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-full hover:from-blue-600 hover:to-purple-600 text-gray-200 hover:text-white transition-all duration-300 shadow-lg hover:shadow-blue-500/20 group/nav"

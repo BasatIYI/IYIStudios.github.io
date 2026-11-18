@@ -29,10 +29,21 @@ function headTags(meta) {
     ...(meta.alternates ?? []).map(
       (alt) => `<link rel="alternate" hreflang="${alt.lang}" href="${absoluteUrl(alt.path)}" />`,
     ),
+    `<meta property="og:type" content="website" />`,
     `<meta property="og:title" content="${attr(meta.title)}" />`,
     `<meta property="og:description" content="${attr(meta.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
     `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    ...(meta.video
+      ? [
+          `<meta property="og:video" content="${absoluteUrl(meta.video)}" />`,
+          `<meta property="og:video:type" content="video/mp4" />`,
+          `<meta property="og:video:width" content="1920" />`,
+          `<meta property="og:video:height" content="1080" />`,
+        ]
+      : []),
     `<meta name="twitter:title" content="${attr(meta.title)}" />`,
     `<meta name="twitter:description" content="${attr(meta.description)}" />`,
     `<meta name="twitter:image" content="${image}" />`,

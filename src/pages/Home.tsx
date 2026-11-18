@@ -4,12 +4,11 @@ import { AppleIcon, EpicGamesIcon, GamepadIcon, GooglePlayIcon, SteamIcon } from
 import WishlistButton from "../components/WishlistButton";
 import TrailerFacade from "../components/TrailerFacade";
 import Modal from "../components/Modal";
-import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP } from "../config/gokboru";
+import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP, IS_DEMO_LIVE, steamLink } from "../config/gokboru";
 import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { PAGE_META, SITE_URL, usePageMeta } from "../seo";
 import { highPriority } from "../utils";
 import { SITE, STORE_ROW } from "../config/site";
-import { GOKBORU as GOKBORU_CONFIG } from "../config/gokboru";
 import { socialLinks } from "../data/social";
 import { responsive } from "../images";
 
@@ -57,21 +56,28 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+function useIsDesktop() {
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setDesktop(mq.matches);
+    const onChange = () => setDesktop(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return desktop;
+}
+
 function WatchTrailerButton({ isTr = false }: { isTr?: boolean }) {
   const [open, setOpen] = useState(false);
-  const base =
-    "inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-bold tracking-wide transition-all duration-300";
 
   if (!GOKBORU.trailerYoutubeId) {
     return (
       <Link
         to={isTr ? "/tr/gokboru" : "/gokboru"}
-        className={`${base} border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/20`}
+        className="inline-flex items-center gap-2 px-3 py-2 text-sm font-bold text-gray-200 underline decoration-gray-500 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
       >
         {isTr ? "Gökbörü'yü Keşfet" : "Explore Gökbörü"}
-        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
       </Link>
     );
   }
@@ -81,16 +87,20 @@ function WatchTrailerButton({ isTr = false }: { isTr?: boolean }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`${base} border border-white/30 bg-white/5 text-white hover:bg-white/15`}
+        className="inline-flex items-center gap-2 px-3 py-2 text-sm font-bold text-gray-200 underline decoration-gray-500 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
       >
-        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg className="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M8 5v14l11-7z" />
         </svg>
         {isTr ? "Fragmanı İzle" : "Watch Trailer"}
       </button>
       <Modal open={open} onClose={() => setOpen(false)} label={isTr ? "Gökbörü fragmanı" : "Gökbörü trailer"}>
         <div className="w-full max-w-5xl">
-          <TrailerFacade autoLoad title={isTr ? "Gökbörü fragmanı" : "Gökbörü trailer"} />
+          <TrailerFacade
+            autoLoad
+            posterSrc={isTr ? GOKBORU_MEDIA.screenshots[12] : GOKBORU_MEDIA.trailerPoster}
+            title={isTr ? "Gökbörü fragmanı" : "Gökbörü trailer"}
+          />
         </div>
       </Modal>
     </>
@@ -180,7 +190,9 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
   usePageMeta(isTr ? PAGE_META.homeTr : PAGE_META.home);
   const copy = isTr ? gokboruCopyTr : gokboruCopy;
   const reducedMotion = usePrefersReducedMotion();
+  const isDesktop = useIsDesktop();
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const demoHref = steamLink(isTr ? "demo_bar_tr" : "demo_bar");
 
   const handleMouseMove = (e: MouseEvent) => {
     if (reducedMotion || !parallaxRef.current) return;
@@ -207,7 +219,7 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             {...highPriority}
             className="h-full w-full object-cover object-top opacity-80"
           />
-          {HAS_HERO_LOOP && !reducedMotion && (
+          {HAS_HERO_LOOP && !reducedMotion && isDesktop && (
             <video
               className="absolute inset-0 h-full w-full object-cover object-top opacity-80"
               src={GOKBORU_MEDIA.heroLoop}
@@ -239,27 +251,35 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
           <p className="mb-8 max-w-2xl text-lg text-gray-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] md:text-2xl leading-relaxed">
             {copy.tagline}
           </p>
-          <div className="flex flex-col items-center gap-4 sm:flex-row">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <WishlistButton
               campaign={isTr ? "hero_tr" : "hero"}
               size="lg"
-              label={
-                isTr
-                  ? "Steam'de İstek Listesine Ekle & Ücretsiz Demoyu Oyna"
-                  : "Wishlist & Play Free Demo on Steam"
-              }
+              label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
             />
-            <WatchTrailerButton isTr={isTr} />
-            {GOKBORU.discordUrl && (
+            {IS_DEMO_LIVE && demoHref && (
               <a
-                href={GOKBORU.discordUrl}
+                href={demoHref}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-6 py-4 text-base font-bold text-purple-200 backdrop-blur transition-all duration-300 hover:border-purple-400 hover:bg-purple-900/60 hover:text-white hover:scale-105"
+                rel="noopener"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:scale-105"
               >
-                <span>{isTr ? "Kapalı Playtest'e Katıl" : "Join Closed Playtest"}</span>
+                {isTr ? "Ücretsiz Demoyu Oyna" : "Play Free Demo"}
               </a>
             )}
+          </div>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-300 font-medium">
+            <span>
+              {IS_DEMO_LIVE
+                ? isTr
+                  ? `Ücretsiz Prolog Demosu Yayında · ${GOKBORU.releaseWindowTr}`
+                  : `Free Prologue demo live now · ${GOKBORU.releaseWindow}`
+                : isTr
+                  ? `Ücretsiz demo: çok yakında · ${GOKBORU.releaseWindowTr}`
+                  : `Free demo: coming soon · ${GOKBORU.releaseWindow}`}
+            </span>
+            <span aria-hidden="true" className="text-gray-600">•</span>
+            <WatchTrailerButton isTr={isTr} />
           </div>
 
           {/* Visual Update Video on Home hero */}
@@ -267,7 +287,7 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             <div className="mt-10 w-full max-w-2xl mx-auto">
               <TrailerFacade
                 videoId={GOKBORU.visualUpdateYoutubeId}
-                posterSrc={GOKBORU_MEDIA.visualUpdatePoster}
+                posterSrc={isTr ? GOKBORU_MEDIA.screenshots[12] : GOKBORU_MEDIA.visualUpdatePoster}
                 title={isTr ? "Gökbörü — Görsel Güncelleme Fragmanı" : "Gökbörü — Visual Update Trailer"}
               />
               <p className="mt-3 text-center text-xs tracking-wider uppercase font-bold text-purple-200/90">
@@ -312,7 +332,7 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             </p>
           </div>
           <Link
-            to="/games"
+            to={isTr ? "/tr/games" : "/games"}
             className="shrink-0 px-8 py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-full hover:from-blue-600 hover:to-purple-600 text-gray-200 hover:text-white font-bold transition-all duration-300 flex items-center gap-3"
           >
             <GamepadIcon className="w-5 h-5" />
@@ -327,10 +347,10 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <Link to={isTr ? "/tr/gokboru" : "/gokboru"} aria-label="Learn more about Gökbörü">
+              <Link to={isTr ? "/tr/gokboru" : "/gokboru"} aria-label={isTr ? "Gökbörü hakkında daha fazla bilgi" : "Learn more about Gökbörü"}>
                 <img
                   {...responsive(GOKBORU_MEDIA.capsule, "(min-width: 768px) 448px, 100vw")}
-                  alt="Gökbörü key art"
+                  alt={isTr ? "Gökbörü kapak görseli" : "Gökbörü key art"}
                   width={1232}
                   height={706}
                   loading="lazy"
@@ -351,9 +371,13 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
                 <WishlistButton
                   campaign={isTr ? "home_card_tr" : "home_card"}
                   label={
-                    isTr
-                      ? "İstek Listesine Ekle & Demoyu Oyna"
-                      : "Wishlist & Play Demo on Steam"
+                    IS_DEMO_LIVE
+                      ? isTr
+                        ? "İstek Listesine Ekle & Demoyu Oyna"
+                        : "Wishlist & Play Demo on Steam"
+                      : isTr
+                        ? "Steam'de İstek Listesine Ekle"
+                        : "Wishlist on Steam"
                   }
                 />
                 <VisualUpdateButton isTr={isTr} />
@@ -423,19 +447,27 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
                 {isTr ? "İletişim e-postası — yakında" : "Contact email — coming soon"}
               </span>
             )}
-            {(SITE.pressKitUrl ?? GOKBORU_CONFIG.pressKitUrl) ? (
+            <Link
+              to={isTr ? "/tr/press" : "/press"}
+              className="rounded-full border border-blue-500/40 bg-blue-600/20 px-6 py-3 text-sm font-bold text-white hover:bg-blue-600 transition-all"
+            >
+              {isTr ? "Basın Kiti" : "Press Kit"}
+            </Link>
+            <Link
+              to={isTr ? "/tr/creators" : "/creators"}
+              className="rounded-full border border-purple-500/40 bg-purple-600/20 px-6 py-3 text-sm font-bold text-white hover:bg-purple-600 transition-all"
+            >
+              {isTr ? "İçerik Üreticileri" : "Creators"}
+            </Link>
+            {GOKBORU.discordUrl && (
               <a
-                href={(SITE.pressKitUrl ?? GOKBORU_CONFIG.pressKitUrl)!}
+                href={GOKBORU.discordUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-blue-500/40 bg-blue-600/20 px-6 py-3 text-sm font-bold text-white hover:bg-blue-600 transition-all"
+                className="rounded-full border border-indigo-500/40 bg-indigo-950/50 px-6 py-3 text-sm font-bold text-indigo-200 hover:bg-indigo-600 hover:text-white transition-all"
               >
-                {isTr ? "Basın kiti" : "Press kit"}
+                {isTr ? "Kapalı Playtest'e Katıl (Discord)" : "Join Closed Playtest (Discord)"}
               </a>
-            ) : (
-              <span className="rounded-full border border-gray-700 px-6 py-3 text-sm font-bold text-gray-400">
-                {isTr ? "Basın kiti — yakında" : "Press kit — coming soon"}
-              </span>
             )}
           </div>
           <ul className="mt-8 flex flex-wrap gap-3" aria-label="IYI Studios on social media">
