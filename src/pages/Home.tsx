@@ -4,7 +4,6 @@ import { AppleIcon, EpicGamesIcon, GamepadIcon, GooglePlayIcon, SteamIcon } from
 import WishlistButton from "../components/WishlistButton";
 import TrailerFacade from "../components/TrailerFacade";
 import Modal from "../components/Modal";
-import GameplayLoopVideo from "../components/GameplayLoopVideo";
 import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP } from "../config/gokboru";
 import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { PAGE_META, SITE_URL, usePageMeta } from "../seo";
@@ -127,6 +126,35 @@ function BossRevealButton({ isTr = false }: { isTr?: boolean }) {
   );
 }
 
+function VisualUpdateButton({ isTr = false }: { isTr?: boolean }) {
+  const [open, setOpen] = useState(false);
+  if (!GOKBORU.visualUpdateYoutubeId) return null;
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-400/40 bg-purple-900/30 px-6 py-3 text-sm font-bold tracking-wide text-purple-200 transition-all duration-300 hover:bg-purple-800/50 hover:text-white shadow-lg"
+      >
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        {isTr ? "Görsel Güncelleme" : "Visual Update"}
+      </button>
+      <Modal open={open} onClose={() => setOpen(false)} label={isTr ? "Gökbörü — Görsel Güncelleme" : "Gökbörü — Visual Update"}>
+        <div className="w-full max-w-5xl">
+          <TrailerFacade
+            autoLoad
+            videoId={GOKBORU.visualUpdateYoutubeId}
+            posterSrc={GOKBORU_MEDIA.visualUpdatePoster}
+            title={isTr ? "Gökbörü — Görsel Güncelleme" : "Gökbörü — Visual Update"}
+          />
+        </div>
+      </Modal>
+    </>
+  );
+}
+
 function organizationJsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -195,7 +223,7 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
         <div className="absolute inset-0 z-0 bg-gradient-to-t from-iyiblack via-iyiblack/45 to-transparent" />
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 pb-12 pt-36 text-center md:pb-16 md:pt-52">
-          <span className="mb-4 inline-block rounded-full border border-purple-400/30 bg-purple-900/90 px-3.5 py-1 text-xs font-bold tracking-widest text-purple-100 shadow-lg">
+          <span className="mb-4 inline-block rounded-full border border-purple-400/30 bg-purple-900/90 px-3.5 py-1 text-xs font-bold tracking-widest text-purple-100 shadow-lg uppercase">
             {isTr ? "İSTEK LİSTESİNE EKLE" : "WISHLIST NOW"}
           </span>
           <h1 className="mb-5 w-full">
@@ -220,10 +248,21 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             <WatchTrailerButton isTr={isTr} />
           </div>
 
-          {/* Gameplay loop video preview under hero */}
-          <div className="mt-10 w-full">
-            <GameplayLoopVideo isTr={isTr} />
-          </div>
+          {/* Visual Update Video on Home hero */}
+          {GOKBORU.visualUpdateYoutubeId && (
+            <div className="mt-10 w-full max-w-2xl mx-auto">
+              <TrailerFacade
+                videoId={GOKBORU.visualUpdateYoutubeId}
+                posterSrc={GOKBORU_MEDIA.visualUpdatePoster}
+                title={isTr ? "Gökbörü — Görsel Güncelleme Fragmanı" : "Gökbörü — Visual Update Trailer"}
+              />
+              <p className="mt-3 text-center text-xs tracking-wider uppercase font-bold text-purple-200/90">
+                {isTr
+                  ? "Visual Update (Demo v2) & Oynanabilir Kut'lar Fragmanı"
+                  : "Visual Update (Demo v2) & Playable Boons Trailer"}
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -299,6 +338,7 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
                   campaign={isTr ? "home_card_tr" : "home_card"}
                   label={isTr ? "İstek Listesine Ekle" : "Wishlist on Steam"}
                 />
+                <VisualUpdateButton isTr={isTr} />
                 <BossRevealButton isTr={isTr} />
                 <Link
                   to={isTr ? "/tr/gokboru" : "/gokboru"}

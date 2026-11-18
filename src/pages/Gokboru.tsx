@@ -7,7 +7,6 @@ import WishlistButton from "../components/WishlistButton";
 import TrailerFacade from "../components/TrailerFacade";
 import Gallery from "../components/Gallery";
 import SteamWidget from "../components/SteamWidget";
-import GameplayLoopVideo from "../components/GameplayLoopVideo";
 import { highPriority } from "../utils";
 import { responsive } from "../images";
 
@@ -113,11 +112,6 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
           <p className="mt-4 text-sm text-gray-300 font-medium">
             {isTr ? GOKBORU.releaseWindowTr : GOKBORU.releaseWindow}
           </p>
-
-          {/* Gameplay loop video preview under hero */}
-          <div className="mt-10 w-full">
-            <GameplayLoopVideo isTr={isTr} />
-          </div>
         </div>
       </section>
 
