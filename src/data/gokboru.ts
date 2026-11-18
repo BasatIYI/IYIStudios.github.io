@@ -8,26 +8,37 @@ export const gokboruCopy = {
     {
       title: "Draw the Line, Claim the Land",
       body: "Leave safe ground, sweep a line across the 3D arena and close it back onto your territory to cleanse everything you enclose. Purge at least 90% of the arena to triumph.",
+      video: "/media/games/gokboru/loops/rec_01_wolf_dash_loop.mp4",
+      poster: "/media/games/gokboru/screenshot-13.webp",
     },
     {
       title: "18 Divine Boons & 6 Duo Synergies",
       body: "Shape distinct builds each run with elemental synergies like Celestial Wolf, Iron Fortress, Solar Conquest, Sky Archer's Wrath, Eternal Ayaz and Storm of the Steppe. Reroll fates with Umay's blessing.",
+      video: "/media/games/gokboru/loops/rec_05_synergy_awakened.mp4",
+      poster: "/media/games/gokboru/screenshot-11.webp",
     },
     {
       title: "Chapter 1: Haunted Trade Road & Peri Kızı",
       body: "Venture into the sun-scorched oasis sanctuary. Morph into the Winged Wolf with custom celestial trails, deflect flying fairy blades, dodge deadly line-lunges, and unleash the cleansing fountain wave.",
+      video: "/media/games/gokboru/loops/rec_03_cleanse_wave_fountain.mp4",
+      poster: "/media/games/gokboru/screenshot-14.webp",
     },
     {
       title: "Shrine of Kut (8 Permanent Upgrades)",
       body: "Spend sacred Kut gathered across runs at the ancient stone Shrine of Kut to unlock 8 permanent upgrades, and analyze past runs in the Chronicle.",
+      video: "/media/games/gokboru/loops/rec_04_shrine_of_kut_ui.mp4",
+      poster: "/media/games/gokboru/screenshot-12.webp",
     },
     {
       title: "10 Mythic Boss Battles",
       body: "Confront legendary figures from Turkic mythology—each testing a specific flaw: Peri Kılıcı, Tepegöz, Alkarısı, Karabasan, Yel Büke, Abra & Yutpa, Kara Şaman, Erlik Kızları, Temir Han, and the Lord of the Underworld, Erlik Han.",
+      video: "/media/games/gokboru/loops/rec_02_deflect_iron_fortress.mp4",
+      poster: "/media/games/gokboru/screenshot-05.webp",
     },
     {
       title: "Cinematic Epics in Dede Korkut's Spirit",
       body: "Fight as Kızagan and Baybörü, guided by Bürküt across handcrafted top-down arenas with cutscenes that can be rewatched anytime in the Story Gallery.",
+      poster: "/media/games/gokboru/screenshot-10.webp",
     },
   ],
   world: {
@@ -65,26 +76,37 @@ export const gokboruCopyTr = {
     {
       title: "Çizgi Çek, Alanı Kapat",
       body: "Güvenli bölgeden çık, 3D arenada çizgini çek ve alanını kapatıp mühürlediğin her şeyi arındır. Zafer için arenanın en az %90'ını temizle.",
+      video: "/media/games/gokboru/loops/rec_01_wolf_dash_loop.mp4",
+      poster: "/media/games/gokboru/screenshot-13.webp",
     },
     {
       title: "18 İlahi Kut & 6 Duo Sinerji",
       body: "Celestial Wolf, Iron Fortress, Solar Conquest, Sky Archer's Wrath, Eternal Ayaz ve Storm of the Steppe gibi ikili sinerjilerle her koşuda farklı bir build kur. Umay'ın lütfuyla kaderini yeniden çek.",
+      video: "/media/games/gokboru/loops/rec_05_synergy_awakened.mp4",
+      poster: "/media/games/gokboru/screenshot-11.webp",
     },
     {
       title: "Bölüm-1: Perili Ticaret Yolu & Peri Kızı",
       body: "Güneşin kavurduğu vaha mabedine adım at. Göksel izler bırakan Kanatlı Kurt formuna dönüş, uçan peri kılıçlarını Deflect ile savuştur, ölümcül atılmalardan kaç ve arındırıcı şadırvan dalgasını başlat.",
+      video: "/media/games/gokboru/loops/rec_03_cleanse_wave_fountain.mp4",
+      poster: "/media/games/gokboru/screenshot-14.webp",
     },
     {
       title: "Kut Tapınağı (8 Kalıcı Güçlendirme)",
       body: "Koşulardan topladığın kutsal Kut cevherlerini kadim taş tapınakta harcayarak 8 kalıcı yeteneği yükselt ve Chronicle ile geçmiş koşularını analiz et.",
+      video: "/media/games/gokboru/loops/rec_04_shrine_of_kut_ui.mp4",
+      poster: "/media/games/gokboru/screenshot-12.webp",
     },
     {
       title: "10 Efsanevi Boss Savaşı",
       body: "Türk mitolojisinin kadim figürleriyle yüzleş: Peri Kılıcı, Tepegöz, Alkarısı, Karabasan, Yel Büke, Abra & Yutpa, Kara Şaman, Erlik Kızları, Temir Han ve Yeraltı Hükümdarı Erlik Han.",
+      video: "/media/games/gokboru/loops/rec_02_deflect_iron_fortress.mp4",
+      poster: "/media/games/gokboru/screenshot-05.webp",
     },
     {
       title: "Dede Korkut Ruhunda Sinematik Destan",
       body: "Kızagan ve Baybörü olarak savaş, gök elçisi Bürküt'ün rehberliğinde top-down arenalarda ilerle; dilediğin an Hikâye Galerisi'nden sinematikleri yeniden izle.",
+      poster: "/media/games/gokboru/screenshot-10.webp",
     },
   ],
   world: {

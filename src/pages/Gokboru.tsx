@@ -104,11 +104,28 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
             />
           </h1>
           <p className="mb-8 max-w-2xl text-lg text-gray-200 md:text-xl leading-relaxed">{copy.tagline}</p>
-          <WishlistButton
-            campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
-            size="lg"
-            label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
-          />
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <WishlistButton
+              campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
+              size="lg"
+              label={
+                isTr
+                  ? "Steam'de İstek Listesine Ekle & Ücretsiz Demoyu Oyna"
+                  : "Wishlist & Play Free Demo on Steam"
+              }
+            />
+            {GOKBORU.discordUrl && (
+              <a
+                href={GOKBORU.discordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-6 py-4 text-base font-bold text-purple-200 backdrop-blur transition-all duration-300 hover:border-purple-400 hover:bg-purple-900/60 hover:text-white hover:scale-105"
+              >
+                <span>{isTr ? "Kapalı Playtest'e Katıl" : "Join Closed Playtest"}</span>
+                <span className="text-xs font-normal text-purple-300/80">({isTr ? "Discord" : "Discord"})</span>
+              </a>
+            )}
+          </div>
           <p className="mt-4 text-sm text-gray-300 font-medium">
             {isTr ? GOKBORU.releaseWindowTr : GOKBORU.releaseWindow}
           </p>
@@ -120,11 +137,45 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
       </Section>
 
       <Section id="features" title={isTr ? "Özellikler" : "Features"}>
-        <ul className="grid gap-6 sm:grid-cols-2">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {copy.features.map((f) => (
-            <li key={f.title} className="rounded-xl border border-gray-800 bg-gray-900 p-6 transition-colors hover:border-gray-700">
-              <h3 className="mb-2 text-xl font-bold text-white">{f.title}</h3>
-              <p className="text-gray-300 leading-relaxed text-sm md:text-base">{f.body}</p>
+            <li
+              key={f.title}
+              className="group flex flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-900/90 transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)]"
+            >
+              {f.video ? (
+                <div className="relative aspect-video w-full overflow-hidden bg-black/60">
+                  <video
+                    src={f.video}
+                    poster={f.poster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    aria-label={f.title}
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+                </div>
+              ) : f.poster ? (
+                <div className="relative aspect-video w-full overflow-hidden bg-black/60">
+                  <img
+                    src={f.poster}
+                    alt={f.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+                </div>
+              ) : null}
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="mb-2 text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                  {f.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                  {f.body}
+                </p>
+              </div>
             </li>
           ))}
         </ul>
@@ -172,13 +223,29 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
         <Gallery images={GOKBORU_MEDIA.screenshots} name={copy.name} />
       </Section>
 
-      <Section id="steam" title={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}>
+      <Section id="steam" title={isTr ? "Steam'de İstek Listesine Ekle & Demoyu Oyna" : "Wishlist & Play Demo on Steam"}>
         <div className="max-w-2xl space-y-6">
           <SteamWidget />
-          <WishlistButton
-            campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
-            label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
-          />
+          <div className="flex flex-wrap items-center gap-4">
+            <WishlistButton
+              campaign={isTr ? "gokboru_page_tr" : "gokboru_page"}
+              label={
+                isTr
+                  ? "Steam'de İstek Listesine Ekle & Ücretsiz Demoyu Oyna"
+                  : "Wishlist & Play Free Demo on Steam"
+              }
+            />
+            {GOKBORU.discordUrl && (
+              <a
+                href={GOKBORU.discordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-6 py-3 text-sm font-bold text-purple-200 backdrop-blur transition-all duration-300 hover:border-purple-400 hover:bg-purple-900/60 hover:text-white"
+              >
+                <span>{isTr ? "Kapalı Playtest'e Katıl" : "Join Closed Playtest"}</span>
+              </a>
+            )}
+          </div>
         </div>
       </Section>
 

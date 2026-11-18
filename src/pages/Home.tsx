@@ -243,9 +243,23 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             <WishlistButton
               campaign={isTr ? "hero_tr" : "hero"}
               size="lg"
-              label={isTr ? "Steam'de İstek Listesine Ekle" : "Wishlist on Steam"}
+              label={
+                isTr
+                  ? "Steam'de İstek Listesine Ekle & Ücretsiz Demoyu Oyna"
+                  : "Wishlist & Play Free Demo on Steam"
+              }
             />
             <WatchTrailerButton isTr={isTr} />
+            {GOKBORU.discordUrl && (
+              <a
+                href={GOKBORU.discordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-6 py-4 text-base font-bold text-purple-200 backdrop-blur transition-all duration-300 hover:border-purple-400 hover:bg-purple-900/60 hover:text-white hover:scale-105"
+              >
+                <span>{isTr ? "Kapalı Playtest'e Katıl" : "Join Closed Playtest"}</span>
+              </a>
+            )}
           </div>
 
           {/* Visual Update Video on Home hero */}
@@ -336,7 +350,11 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
               <div className="flex flex-wrap items-center gap-4">
                 <WishlistButton
                   campaign={isTr ? "home_card_tr" : "home_card"}
-                  label={isTr ? "İstek Listesine Ekle" : "Wishlist on Steam"}
+                  label={
+                    isTr
+                      ? "İstek Listesine Ekle & Demoyu Oyna"
+                      : "Wishlist & Play Demo on Steam"
+                  }
                 />
                 <VisualUpdateButton isTr={isTr} />
                 <BossRevealButton isTr={isTr} />

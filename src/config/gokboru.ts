@@ -10,8 +10,8 @@ export const GOKBORU = {
   visualUpdateYoutubeId: "JaGRAbsxZEY" as string | null,
   discordUrl: "https://discord.gg/wbyRSjavpX" as string | null,
   pressKitUrl: "/presskit/gokboru-presskit.zip",
-  releaseWindow: "Free demo: coming soon · Full release: March 2027",
-  releaseWindowTr: "Ücretsiz demo: yakında · Tam sürüm: Mart 2027",
+  releaseWindow: "Full release: March 2027",
+  releaseWindowTr: "Tam sürüm: Mart 2027",
   utm: { source: "iyistudios", medium: "web" },
 };
 
@@ -100,7 +100,14 @@ export const GOKBORU_MEDIA = {
   visualUpdatePoster: `${dir}/visual-update-poster.webp`,
   heroLoop: `${dir}/hero-loop.mp4`, // 1920×1080, short, muted
   ogImage: `${dir}/og-image.png`, // 1200×630 PNG
-  screenshots: Array.from({ length: 10 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
+  screenshots: Array.from({ length: 14 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
+  loops: {
+    wolfDash: `${dir}/loops/rec_01_wolf_dash_loop.mp4`,
+    deflect: `${dir}/loops/rec_02_deflect_iron_fortress.mp4`,
+    cleanseWave: `${dir}/loops/rec_03_cleanse_wave_fountain.mp4`,
+    shrineOfKut: `${dir}/loops/rec_04_shrine_of_kut_ui.mp4`,
+    synergy: `${dir}/loops/rec_05_synergy_awakened.mp4`,
+  },
 };
 
 /** True when public/media/games/gokboru/hero-loop.mp4 existed at build time. */
