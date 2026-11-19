@@ -135,7 +135,7 @@ export const GOKBORU_MEDIA = {
   visualUpdatePoster: `${dir}/visual-update-poster.webp`,
   heroLoop: `${dir}/hero-loop.mp4`, // 1920×1080, short, muted
   ogImage: `${dir}/og-image.png`, // 1200×630 PNG
-  screenshots: Array.from({ length: 10 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
+  screenshots: Array.from({ length: 15 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
   loops: {
     wolfDash: `${dir}/loops/rec_01_wolf_dash_loop.mp4`,
     deflect: `${dir}/loops/rec_02_deflect_iron_fortress.mp4`,
