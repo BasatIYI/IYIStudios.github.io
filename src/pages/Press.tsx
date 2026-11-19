@@ -1,4 +1,4 @@
-import { GOKBORU, GOKBORU_MEDIA, MARKETING_FACTS } from "../config/gokboru";
+import { GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, MARKETING_FACTS } from "../config/gokboru";
 import { SITE } from "../config/site";
 import { aiDisclosure, gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { PAGE_META, usePageMeta } from "../seo";
@@ -20,6 +20,7 @@ export default function Press({ lang = "en" }: { lang?: "en" | "tr" }) {
         { label: "Geliştirici & Yayıncı", value: "IYI Studios (Türkiye)" },
         { label: "Platform", value: "PC (Windows — Steam)" },
         { label: "Çıkış Tarihi", value: `${dateTr} — Tam Sürüm` },
+        { label: "Demo", value: IS_DEMO_LIVE ? `${GOKBORU.demoStatusTr} (App ID: 5534770)` : "Yakında" },
         { label: "Fiyat", value: priceTr },
         { label: "Tür", value: "3D Alan Ele Geçirme / Aksiyon Roguelite / Arcade" },
         { label: "Dil Desteği", value: "11 Dil" },
@@ -31,6 +32,7 @@ export default function Press({ lang = "en" }: { lang?: "en" | "tr" }) {
         { label: "Developer & Publisher", value: "IYI Studios (Türkiye)" },
         { label: "Platform", value: "PC (Windows — Steam)" },
         { label: "Release Date", value: `${date} — Full Release` },
+        { label: "Demo", value: IS_DEMO_LIVE ? `${GOKBORU.demoStatusEn} (App ID: 5534770)` : "Coming soon" },
         { label: "Price", value: price },
         { label: "Genre", value: "3D Territory-Capture Action Roguelite / Arcade" },
         { label: "Languages", value: "11 Languages" },

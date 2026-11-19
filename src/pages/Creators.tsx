@@ -1,4 +1,4 @@
-import { GOKBORU, GOKBORU_MEDIA, MARKETING_FACTS } from "../config/gokboru";
+import { demoLink, GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, MARKETING_FACTS } from "../config/gokboru";
 import { SITE } from "../config/site";
 import { PAGE_META, usePageMeta } from "../seo";
 import { responsive } from "../images";
@@ -8,6 +8,8 @@ export default function Creators({ lang = "en" }: { lang?: "en" | "tr" }) {
   usePageMeta(isTr ? PAGE_META.creatorsTr : PAGE_META.creators);
 
   const { boons, synergies, permanentUpgrades, bosses, date, dateTr, price, priceTr } = MARKETING_FACTS.launch;
+  const screenshotCount = GOKBORU_MEDIA.screenshots.length;
+  const demoHref = demoLink("gokboru_page");
 
   const factItems = isTr
     ? [
@@ -15,6 +17,10 @@ export default function Creators({ lang = "en" }: { lang?: "en" | "tr" }) {
         { label: "Ortalama Koşu Süresi", value: "~15–20 dakika" },
         { label: "Dil Desteği", value: "11 Dil (Türkçe, İngilizce dâhil)" },
         { label: "Çıkış Tarihi", value: `${dateTr} — Tam Sürüm (Erken Erişim Değil)` },
+        {
+          label: "Demo Durumu",
+          value: IS_DEMO_LIVE ? GOKBORU.demoStatusTr : "Ücretsiz Prolog Demosu yakında",
+        },
         { label: "Fiyat", value: priceTr },
         {
           label: "İçerik Kapsamı",
@@ -27,6 +33,10 @@ export default function Creators({ lang = "en" }: { lang?: "en" | "tr" }) {
         { label: "Average Run Duration", value: "~15–20 minutes" },
         { label: "Language Support", value: "11 Languages" },
         { label: "Release Date", value: `${date} — Full Release (Not Early Access)` },
+        {
+          label: "Demo Status",
+          value: IS_DEMO_LIVE ? GOKBORU.demoStatusEn : "Free Prologue Demo coming soon",
+        },
         { label: "Price", value: price },
         {
           label: "Content Scope",
@@ -36,10 +46,8 @@ export default function Creators({ lang = "en" }: { lang?: "en" | "tr" }) {
       ];
 
   const clips = [
-    { label: isTr ? "Wolf Dash Döngüsü (MP4)" : "Wolf Dash Loop (MP4)", href: GOKBORU_MEDIA.loops.wolfDash },
     { label: isTr ? "Deflect & Iron Fortress (MP4)" : "Deflect & Iron Fortress (MP4)", href: GOKBORU_MEDIA.loops.deflect },
     { label: isTr ? "Arındırma Dalgası (MP4)" : "Cleanse Wave Fountain (MP4)", href: GOKBORU_MEDIA.loops.cleanseWave },
-    { label: isTr ? "Kut Mabedi Arayüzü (MP4)" : "Shrine of Kut UI (MP4)", href: GOKBORU_MEDIA.loops.shrineOfKut },
     { label: isTr ? "Sinerji Patlaması (MP4)" : "Synergy Awakened (MP4)", href: GOKBORU_MEDIA.loops.synergy },
   ];
 
@@ -66,6 +74,18 @@ export default function Creators({ lang = "en" }: { lang?: "en" | "tr" }) {
             ? "Gökbörü, Türk mitolojisinden doğan yüksek tempolu bir 3D çizgi çekip alan kapatma (territory-capture) arcade aksiyon roguelite oyunudur. Güvenli bölgeden çık, karanlık arenada hattını çek ve halkayı kapatıp içinde kalan Erlik iblislerini arındır; her açık çizgi ölümcül bir kumardır."
             : "Gökbörü is a fast-paced 3D territory-capture arcade action roguelite rooted in Turkic mythology. Leave safe ground, sweep a line across the corrupted arena, and close the loop to purge every demon trapped inside—every open line is a high-stakes gamble."}
         </p>
+        {IS_DEMO_LIVE && demoHref && (
+          <div className="pt-2">
+            <a
+              href={demoHref}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105"
+            >
+              {isTr ? "Ücretsiz Prolog Demosunu Steam'de Oyna" : "Play Free Prologue Demo on Steam"}
+            </a>
+          </div>
+        )}
       </header>
 
       {/* Monetization & Stream-Safe Permission */}
@@ -103,8 +123,8 @@ export default function Creators({ lang = "en" }: { lang?: "en" | "tr" }) {
           </h2>
           <p className="text-gray-300">
             {isTr
-              ? "Thumbnail tasarımları ve video düzenlemeleri için şeffaf logo, kapak görselleri, 14 ekran görüntüsü ve oynanış klipleri."
-              : "Transparent logo, thumbnail key art, 14 high-resolution screenshots, and gameplay clips ready for thumbnails and edits."}
+              ? `Thumbnail tasarımları ve video düzenlemeleri için şeffaf logo, kapak görselleri, ${screenshotCount} ekran görüntüsü ve oynanış klipleri.`
+              : `Transparent logo, thumbnail key art, ${screenshotCount} high-resolution screenshots, and gameplay clips ready for thumbnails and edits.`}
           </p>
         </div>
 
