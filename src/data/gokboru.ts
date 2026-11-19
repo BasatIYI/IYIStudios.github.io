@@ -24,7 +24,7 @@ export const gokboruCopy = {
     {
       title: "Draw the Line, Claim the Land",
       body: "Leave safe ground, sweep a line across the 3D arena and close it back onto your territory to cleanse everything you enclose. Purge at least 90% of the arena to triumph.",
-      placeholder: true,
+      poster: "/media/games/gokboru/screenshot-11.webp",
     },
     {
       title: `${boons} Divine Boons & ${synergies} Duo Synergies`,
@@ -41,7 +41,7 @@ export const gokboruCopy = {
     {
       title: `Shrine of Kut (${permanentUpgrades} Permanent Upgrades)`,
       body: `Spend sacred Kut gathered across runs at the ancient stone Shrine of Kut to unlock ${permanentUpgrades} permanent upgrades, and analyze past runs in the Chronicle.`,
-      placeholder: true,
+      poster: "/media/games/gokboru/screenshot-15.webp",
     },
     {
       title: `${bosses} Mythic Boss Battles`,
@@ -89,7 +89,7 @@ export const gokboruCopyTr = {
     {
       title: "Çizgi Çek, Alanı Kapat",
       body: "Güvenli bölgeden çık, 3D arenada çizgini çek ve alanını kapatıp mühürlediğin her şeyi arındır. Zafer için arenanın en az %90'ını temizle.",
-      placeholder: true,
+      poster: "/media/games/gokboru/screenshot-11.webp",
     },
     {
       title: `${boons} İlahi Kut & ${synergies} Duo Sinerji`,
@@ -106,7 +106,7 @@ export const gokboruCopyTr = {
     {
       title: `Kut Tapınağı (${permanentUpgrades} Kalıcı Güçlendirme)`,
       body: `Koşulardan topladığın kutsal Kut cevherlerini kadim taş tapınakta harcayarak ${permanentUpgrades} kalıcı yeteneği yükselt ve Chronicle ile geçmiş koşularını analiz et.`,
-      placeholder: true,
+      poster: "/media/games/gokboru/screenshot-15.webp",
     },
     {
       title: `${bosses} Efsanevi Boss Savaşı`,
