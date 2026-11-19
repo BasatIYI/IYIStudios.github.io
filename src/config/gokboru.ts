@@ -7,6 +7,10 @@ export const MARKETING_FACTS = marketingFacts;
 export const GOKBORU = {
   steamAppId: String(marketingFacts.store.appId),
   steamStoreUrl: `https://store.steampowered.com/app/${marketingFacts.store.appId}/Gokboru/`,
+  demoStoreUrl: marketingFacts.demo.storeUrl,
+  demoStatusEn: marketingFacts.demo.statusTextEn,
+  demoStatusTr: marketingFacts.demo.statusTextTr,
+  playtestLive: Boolean(marketingFacts.store.playtestLive),
   trailerYoutubeId: "r_IZLDmio_w" as string | null,
   bossRevealYoutubeId: "swHfokx1yrA" as string | null,
   visualUpdateYoutubeId: "JaGRAbsxZEY" as string | null,
@@ -53,6 +57,21 @@ export function steamLink(
   medium: string = GOKBORU.utm.medium,
 ): string | null {
   const base = steamStoreUrl();
+  if (!base) return null;
+  const url = new URL(base);
+  url.searchParams.set("utm_source", source);
+  url.searchParams.set("utm_medium", medium);
+  url.searchParams.set("utm_campaign", campaign);
+  return url.toString();
+}
+
+/** Direct Steam Demo store link with consistent UTM parameters. */
+export function demoLink(
+  campaign: SteamCampaign,
+  source: string = GOKBORU.utm.source,
+  medium: string = GOKBORU.utm.medium,
+): string | null {
+  const base = GOKBORU.demoStoreUrl || steamStoreUrl();
   if (!base) return null;
   const url = new URL(base);
   url.searchParams.set("utm_source", source);
@@ -116,7 +135,7 @@ export const GOKBORU_MEDIA = {
   visualUpdatePoster: `${dir}/visual-update-poster.webp`,
   heroLoop: `${dir}/hero-loop.mp4`, // 1920×1080, short, muted
   ogImage: `${dir}/og-image.png`, // 1200×630 PNG
-  screenshots: Array.from({ length: 14 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
+  screenshots: Array.from({ length: 10 }, (_, i) => `${dir}/screenshot-${String(i + 1).padStart(2, "0")}.webp`),
   loops: {
     wolfDash: `${dir}/loops/rec_01_wolf_dash_loop.mp4`,
     deflect: `${dir}/loops/rec_02_deflect_iron_fortress.mp4`,

@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, steamLink } from "../config/gokboru";
+import { demoLink, GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, steamLink } from "../config/gokboru";
 import { SteamIcon } from "../components/icons";
 import { socialLinks } from "../data/social";
 import { PAGE_META, usePageMeta } from "../seo";
@@ -17,17 +17,18 @@ export default function Links({ lang = "en" }: { lang?: "en" | "tr" }) {
     .toLowerCase();
   const utmSource = ALLOWED_SOURCES.has(rawSource) ? rawSource : rawSource || "bio";
   const steamHref = steamLink("bio", utmSource, "social");
+  const demoHref = demoLink("bio", utmSource, "social");
 
   const trailerUrl = GOKBORU.trailerYoutubeId
     ? `https://youtu.be/${GOKBORU.trailerYoutubeId}`
     : "https://www.youtube.com/@iyigames6606";
 
   const cards = [
-    ...(IS_DEMO_LIVE && steamHref
+    ...(IS_DEMO_LIVE && demoHref
       ? [
           {
             label: isTr ? "Ücretsiz Demoyu Oyna (Steam)" : "Play Free Demo (Steam)",
-            href: steamHref,
+            href: demoHref,
             external: true,
             accent: "border-emerald-500/40 bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-100",
           },

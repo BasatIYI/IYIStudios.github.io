@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ANNOUNCEMENT_CONFIG, ANNOUNCEMENT_MODE, steamLink } from "../config/gokboru";
+import { ANNOUNCEMENT_CONFIG, ANNOUNCEMENT_MODE, demoLink, IS_DEMO_LIVE, steamLink } from "../config/gokboru";
 
 // Keep in sync with the inline script in index.html, which hides the bar
 // before first paint for visitors who already dismissed it.
@@ -22,7 +22,7 @@ export default function AnnouncementBar() {
 
   const isTr = location.pathname.startsWith("/tr");
   const cfg = isTr ? ANNOUNCEMENT_CONFIG[ANNOUNCEMENT_MODE].tr : ANNOUNCEMENT_CONFIG[ANNOUNCEMENT_MODE].en;
-  const href = steamLink(cfg.campaign);
+  const href = IS_DEMO_LIVE ? demoLink(cfg.campaign) : steamLink(cfg.campaign);
   const cta = "font-bold underline decoration-white/40 underline-offset-4 hover:decoration-white";
 
   return (

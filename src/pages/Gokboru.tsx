@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, steamLink, steamStoreUrl } from "../config/gokboru";
+import { demoLink, GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE, steamStoreUrl } from "../config/gokboru";
 import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { socialLinks } from "../data/social";
 import { PAGE_META, SITE_URL, absoluteUrl, usePageMeta } from "../seo";
@@ -74,7 +74,7 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
   const isTr = lang === "tr";
   usePageMeta(isTr ? PAGE_META.gokboruTr : PAGE_META.gokboru);
   const copy = isTr ? gokboruCopyTr : gokboruCopy;
-  const demoHref = steamLink(isTr ? "demo_bar_tr" : "demo_bar");
+  const demoHref = demoLink(isTr ? "demo_bar_tr" : "demo_bar");
 
   return (
     <div className="flex flex-col">
@@ -127,8 +127,8 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
             <span>
               {IS_DEMO_LIVE
                 ? isTr
-                  ? `Ücretsiz Prolog Demosu Yayında · ${GOKBORU.releaseWindowTr}`
-                  : `Free Prologue demo live now · ${GOKBORU.releaseWindow}`
+                  ? `${GOKBORU.demoStatusTr} · ${GOKBORU.releaseWindowTr}`
+                  : `${GOKBORU.demoStatusEn} · ${GOKBORU.releaseWindow}`
                 : isTr
                   ? `Ücretsiz demo: çok yakında · ${GOKBORU.releaseWindowTr}`
                   : `Free demo: coming soon · ${GOKBORU.releaseWindow}`}
@@ -146,7 +146,7 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
 
       <Section id="trailer" title={isTr ? "Fragman" : "Trailer"}>
         <TrailerFacade
-          posterSrc={isTr ? GOKBORU_MEDIA.screenshots[12] : GOKBORU_MEDIA.trailerPoster}
+          posterSrc={GOKBORU_MEDIA.trailerPoster}
           title={isTr ? "Gökbörü Fragmanı" : "Gökbörü Trailer"}
         />
       </Section>
@@ -158,11 +158,13 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
               key={f.title}
               className="group flex flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-900/90 transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)]"
             >
-              {f.video ? (
+              {"placeholder" in f && f.placeholder ? (
+                <div className="bg-black aspect-video w-full rounded-t-xl" aria-hidden="true" />
+              ) : "video" in f && f.video ? (
                 <div className="relative aspect-video w-full overflow-hidden bg-black/60">
                   <video
                     src={f.video}
-                    poster={f.poster}
+                    poster={"poster" in f ? f.poster : undefined}
                     autoPlay
                     muted
                     loop
@@ -172,7 +174,7 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
                 </div>
-              ) : f.poster ? (
+              ) : "poster" in f && f.poster ? (
                 <div className="relative aspect-video w-full overflow-hidden bg-black/60">
                   <img
                     src={f.poster}
@@ -228,7 +230,7 @@ export default function Gokboru({ lang = "en" }: { lang?: "en" | "tr" }) {
           </p>
           <TrailerFacade
             videoId={GOKBORU.visualUpdateYoutubeId}
-            posterSrc={isTr ? GOKBORU_MEDIA.screenshots[10] : GOKBORU_MEDIA.visualUpdatePoster}
+            posterSrc={GOKBORU_MEDIA.visualUpdatePoster}
             title={isTr ? "Gökbörü — Görsel Güncelleme Fragmanı" : "Gökbörü — Visual Update Trailer"}
           />
         </Section>

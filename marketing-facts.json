@@ -1,6 +1,9 @@
 {
   "demo": {
-    "live": false
+    "live": true,
+    "statusTextEn": "Free Prologue Demo is Live on Steam",
+    "statusTextTr": "Ücretsiz Prolog Demosu Steam'de Yayında",
+    "storeUrl": "https://store.steampowered.com/app/5534770/Gokboru_Demo/"
   },
   "launch": {
     "date": "March 2027",
@@ -17,6 +20,7 @@
     "storageGB": 4
   },
   "store": {
-    "appId": 4886790
+    "appId": 4886790,
+    "playtestLive": true
   }
 }

@@ -4,7 +4,7 @@ import { AppleIcon, EpicGamesIcon, GamepadIcon, GooglePlayIcon, SteamIcon } from
 import WishlistButton from "../components/WishlistButton";
 import TrailerFacade from "../components/TrailerFacade";
 import Modal from "../components/Modal";
-import { GOKBORU, GOKBORU_MEDIA, HAS_HERO_LOOP, IS_DEMO_LIVE, steamLink } from "../config/gokboru";
+import { demoLink, GOKBORU, GOKBORU_MEDIA, IS_DEMO_LIVE } from "../config/gokboru";
 import { gokboruCopy, gokboruCopyTr } from "../data/gokboru";
 import { PAGE_META, SITE_URL, usePageMeta } from "../seo";
 import { highPriority } from "../utils";
@@ -56,18 +56,6 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function useIsDesktop() {
-  const [desktop, setDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    setDesktop(mq.matches);
-    const onChange = () => setDesktop(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-  return desktop;
-}
-
 function WatchTrailerButton({ isTr = false }: { isTr?: boolean }) {
   const [open, setOpen] = useState(false);
 
@@ -98,7 +86,7 @@ function WatchTrailerButton({ isTr = false }: { isTr?: boolean }) {
         <div className="w-full max-w-5xl">
           <TrailerFacade
             autoLoad
-            posterSrc={isTr ? GOKBORU_MEDIA.screenshots[12] : GOKBORU_MEDIA.trailerPoster}
+            posterSrc={GOKBORU_MEDIA.trailerPoster}
             title={isTr ? "Gökbörü fragmanı" : "Gökbörü trailer"}
           />
         </div>
@@ -190,9 +178,8 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
   usePageMeta(isTr ? PAGE_META.homeTr : PAGE_META.home);
   const copy = isTr ? gokboruCopyTr : gokboruCopy;
   const reducedMotion = usePrefersReducedMotion();
-  const isDesktop = useIsDesktop();
   const parallaxRef = useRef<HTMLDivElement>(null);
-  const demoHref = steamLink(isTr ? "demo_bar_tr" : "demo_bar");
+  const demoHref = demoLink(isTr ? "demo_bar_tr" : "demo_bar");
 
   const handleMouseMove = (e: MouseEvent) => {
     if (reducedMotion || !parallaxRef.current) return;
@@ -219,18 +206,6 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             {...highPriority}
             className="h-full w-full object-cover object-top opacity-80"
           />
-          {HAS_HERO_LOOP && !reducedMotion && isDesktop && (
-            <video
-              className="absolute inset-0 h-full w-full object-cover object-top opacity-80"
-              src={GOKBORU_MEDIA.heroLoop}
-              poster={GOKBORU_MEDIA.keyArt}
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            />
-          )}
         </div>
         <div className="absolute inset-0 z-0 bg-gradient-to-t from-iyiblack via-iyiblack/45 to-transparent" />
 
@@ -272,8 +247,8 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             <span>
               {IS_DEMO_LIVE
                 ? isTr
-                  ? `Ücretsiz Prolog Demosu Yayında · ${GOKBORU.releaseWindowTr}`
-                  : `Free Prologue demo live now · ${GOKBORU.releaseWindow}`
+                  ? `${GOKBORU.demoStatusTr} · ${GOKBORU.releaseWindowTr}`
+                  : `${GOKBORU.demoStatusEn} · ${GOKBORU.releaseWindow}`
                 : isTr
                   ? `Ücretsiz demo: çok yakında · ${GOKBORU.releaseWindowTr}`
                   : `Free demo: coming soon · ${GOKBORU.releaseWindow}`}
@@ -287,7 +262,7 @@ export default function Home({ lang = "en" }: { lang?: "en" | "tr" }) {
             <div className="mt-10 w-full max-w-2xl mx-auto">
               <TrailerFacade
                 videoId={GOKBORU.visualUpdateYoutubeId}
-                posterSrc={isTr ? GOKBORU_MEDIA.screenshots[12] : GOKBORU_MEDIA.visualUpdatePoster}
+                posterSrc={GOKBORU_MEDIA.trailerPoster}
                 title={isTr ? "Gökbörü — Görsel Güncelleme Fragmanı" : "Gökbörü — Visual Update Trailer"}
               />
               <p className="mt-3 text-center text-xs tracking-wider uppercase font-bold text-purple-200/90">

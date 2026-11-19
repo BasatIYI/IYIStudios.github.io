@@ -25,7 +25,7 @@ export const DEVLOG_POSTS: DevlogPost[] = [
       tr: `Gökbörü'nün Görsel Güncellemesi, ${boons} ilahi Kut, ${synergies} ikili sinerji ve ${dateTr} tam sürüm hedeflerimize yakından bakış.`,
     },
     tags: ["Devlog", "Visual Update", "Shrine of Kut"],
-    coverImage: "/media/games/gokboru/screenshot-11.webp",
+    coverImage: "/media/games/gokboru/screenshot-07.webp",
     body: {
       en: [
         "Welcome to the official Gökbörü development log. Over the past month, we overhauled the visual atmosphere, combat clarity, and meta-progression loop ahead of our upcoming free Prologue demo.",

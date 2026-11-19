@@ -24,26 +24,24 @@ export const gokboruCopy = {
     {
       title: "Draw the Line, Claim the Land",
       body: "Leave safe ground, sweep a line across the 3D arena and close it back onto your territory to cleanse everything you enclose. Purge at least 90% of the arena to triumph.",
-      video: "/media/games/gokboru/loops/rec_01_wolf_dash_loop.mp4",
-      poster: "/media/games/gokboru/screenshot-13.webp",
+      placeholder: true,
     },
     {
       title: `${boons} Divine Boons & ${synergies} Duo Synergies`,
       body: "Shape distinct builds each run with elemental synergies like Celestial Wolf, Iron Fortress, Solar Conquest, Sky Archer's Wrath, Eternal Ayaz and Storm of the Steppe. Reroll fates with Umay's blessing.",
       video: "/media/games/gokboru/loops/rec_05_synergy_awakened.mp4",
-      poster: "/media/games/gokboru/screenshot-11.webp",
+      poster: "/media/games/gokboru/screenshot-03.webp",
     },
     {
       title: "Chapter 1: Haunted Trade Road & Peri Kızı",
       body: "Venture into the sun-scorched oasis sanctuary. Morph into the Winged Wolf with custom celestial trails, deflect flying fairy blades, dodge deadly line-lunges, and unleash the cleansing fountain wave.",
       video: "/media/games/gokboru/loops/rec_03_cleanse_wave_fountain.mp4",
-      poster: "/media/games/gokboru/screenshot-14.webp",
+      poster: "/media/games/gokboru/screenshot-04.webp",
     },
     {
       title: `Shrine of Kut (${permanentUpgrades} Permanent Upgrades)`,
       body: `Spend sacred Kut gathered across runs at the ancient stone Shrine of Kut to unlock ${permanentUpgrades} permanent upgrades, and analyze past runs in the Chronicle.`,
-      video: "/media/games/gokboru/loops/rec_04_shrine_of_kut_ui.mp4",
-      poster: "/media/games/gokboru/screenshot-12.webp",
+      placeholder: true,
     },
     {
       title: `${bosses} Mythic Boss Battles`,
@@ -91,26 +89,24 @@ export const gokboruCopyTr = {
     {
       title: "Çizgi Çek, Alanı Kapat",
       body: "Güvenli bölgeden çık, 3D arenada çizgini çek ve alanını kapatıp mühürlediğin her şeyi arındır. Zafer için arenanın en az %90'ını temizle.",
-      video: "/media/games/gokboru/loops/rec_01_wolf_dash_loop.mp4",
-      poster: "/media/games/gokboru/screenshot-13.webp",
+      placeholder: true,
     },
     {
       title: `${boons} İlahi Kut & ${synergies} Duo Sinerji`,
       body: "Celestial Wolf, Iron Fortress, Solar Conquest, Sky Archer's Wrath, Eternal Ayaz ve Storm of the Steppe gibi ikili sinerjilerle her koşuda farklı bir build kur. Umay'ın lütfuyla kaderini yeniden çek.",
       video: "/media/games/gokboru/loops/rec_05_synergy_awakened.mp4",
-      poster: "/media/games/gokboru/screenshot-11.webp",
+      poster: "/media/games/gokboru/screenshot-03.webp",
     },
     {
       title: "Bölüm-1: Perili Ticaret Yolu & Peri Kızı",
       body: "Güneşin kavurduğu vaha mabedine adım at. Göksel izler bırakan Kanatlı Kurt formuna dönüş, uçan peri kılıçlarını Deflect ile savuştur, ölümcül atılmalardan kaç ve arındırıcı şadırvan dalgasını başlat.",
       video: "/media/games/gokboru/loops/rec_03_cleanse_wave_fountain.mp4",
-      poster: "/media/games/gokboru/screenshot-14.webp",
+      poster: "/media/games/gokboru/screenshot-04.webp",
     },
     {
       title: `Kut Tapınağı (${permanentUpgrades} Kalıcı Güçlendirme)`,
       body: `Koşulardan topladığın kutsal Kut cevherlerini kadim taş tapınakta harcayarak ${permanentUpgrades} kalıcı yeteneği yükselt ve Chronicle ile geçmiş koşularını analiz et.`,
-      video: "/media/games/gokboru/loops/rec_04_shrine_of_kut_ui.mp4",
-      poster: "/media/games/gokboru/screenshot-12.webp",
+      placeholder: true,
     },
     {
       title: `${bosses} Efsanevi Boss Savaşı`,
